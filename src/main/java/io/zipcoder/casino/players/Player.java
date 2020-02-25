@@ -23,4 +23,10 @@ public class Player {
     public Wallet getWallet() {
         return wallet;
     }
+
+    public Player(String name, int age, Wallet wallet) {
+        this.name = name;
+        this.age = age;
+        this.wallet = wallet;
+    }
 }

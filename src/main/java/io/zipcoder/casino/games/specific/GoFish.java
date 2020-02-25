@@ -22,4 +22,15 @@ public class GoFish extends Game implements CardGame {
     public void runGame() {
 
     }
+    public void winning() {
+    }
+
+    public void losing() {
+    }
+
+    public void quitGame () {
+    }
+
+
+    }
 }
