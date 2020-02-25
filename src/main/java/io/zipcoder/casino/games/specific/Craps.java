@@ -15,6 +15,35 @@ public class Craps extends Game implements DiceGame {
 
     /*
     Craps logic
+      roll dice(2)
+
+      bets
+
+      (before first roll)
+      PassLine
+      7 or 11; win (reset)
+      2 or 3; lose (rest
+      12; push
+
+      Don't Pass
+      2 or 3; win (reset)
+      12; push
+      7 or 11; lose
+
+      (come-out roll)
+      first roll = set point;
+
+      Second roll =
+      Come bet
+      if roll = point; win
+      if roll = 7; lose
+
+      Don't Come
+      if roll = 2 or 3; win
+      if roll = 12; push
+      if roll = 7; win
+      if roll = point; lose
+
 
      */
 
