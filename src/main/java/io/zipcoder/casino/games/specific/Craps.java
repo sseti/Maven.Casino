@@ -13,6 +13,10 @@ public class Craps extends Game implements DiceGame {
     private CrapsTable table;
     private Map<Chip, BettingArea> crapsMap;
 
+    /*
+    Craps logic
+
+     */
 
     @Override
     public void runGame() {
