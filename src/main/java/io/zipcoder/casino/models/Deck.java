@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import static io.zipcoder.casino.models.PlayingCard.Rank.*;
+import static io.zipcoder.casino.models.PlayingCard.Suit.*;
+
 public class Deck {
 
     private ArrayList<PlayingCard> cards = new ArrayList<>();
@@ -21,15 +24,49 @@ public class Deck {
     }
 
     public void generateDeck(int deckSize) {
-        int n = 0;
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 4; j++) {
-               // PlayingCard card = new PlayingCard(suit.size());
-                n++;
+
+            ArrayList<PlayingCard.Rank> list = new ArrayList<>();
+
+            list.add(ACE);
+            list.add(TWO);
+            list.add(THREE);
+            list.add(FOUR);
+            list.add(FIVE);
+            list.add(SIX);
+            list.add(SEVEN);
+            list.add(EIGHT);
+            list.add(NINE);
+            list.add(TEN);
+            list.add(JACK);
+            list.add(QUEEN);
+            list.add(KING);
+
+            ArrayList <PlayingCard.Suit> listTwo = new ArrayList<>();
+            listTwo.add(HEARTS);
+            listTwo.add(SPADES);
+            listTwo.add(CLUBS);
+            listTwo.add(DIAMONDS);
+
+            this.cards = new ArrayList();
+            for (int i = 0; i < 13; i++){
+                for (int j = 0; j < 4; j++) {
+
+               PlayingCard card = new PlayingCard(list.get(i), listTwo.get(j));
+               this.cards.add(card);
 
             }
             Collections.shuffle(cards);
 
         }
+
+    }
+
+
+    public ArrayList<PlayingCard> getCards() {
+        return cards;
+    }
+
+    public static void setSeed() {
+
     }
 }

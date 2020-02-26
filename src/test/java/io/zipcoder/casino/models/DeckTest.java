@@ -11,12 +11,12 @@ public class DeckTest {
     public void drawTest() {
         //given
         Deck newDeck = new Deck();
-        ArrayList<PlayingCard> cards = new ArrayList<>();
+        //ArrayList<PlayingCard> cards = new ArrayList<>();
         newDeck.generateDeck(Deck.DECKSIZE);
 
         // when
         int expected = 52;
-        int actual = cards.size();
+        int actual = newDeck.getCards().size();
 
         // then
         Assert.assertEquals(expected, actual);
