@@ -13,6 +13,11 @@ public class PlayingCard {
         return suit;
     }
 
+    public PlayingCard(Rank value, Suit suit) {
+        this.value = value;
+        this.suit = suit;
+    }
+
     public enum Suit {
         HEARTS,
         SPADES,

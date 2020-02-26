@@ -10,7 +10,8 @@ public class Chip {
     private static final int GREEN = 25;
     private static final int BLACK = 100;
 
-    public int getDollarVal() { return dollarVal; }
+
+    public int getDollarVal(int chipValue) { return chipValue; }
 
     public static int getWHITE() {
         return WHITE;
@@ -26,5 +27,16 @@ public class Chip {
 
     public static int getBLACK() {
         return BLACK;
+    }
+
+
+    public enum ChipValue {
+        WHITE,
+        BLUE,
+        GREEN,
+        BLACK;
+
+
+
     }
 }
