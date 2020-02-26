@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 
 import io.zipcoder.casino.games.Game;
+import io.zipcoder.casino.games.specific.LoopyDice;
 import io.zipcoder.casino.models.Wallet;
 import io.zipcoder.casino.players.Player;
 import io.zipcoder.casino.models.Casino;
@@ -33,6 +34,12 @@ public class App {
         SaveLoadServices.loadJSONData(SaveLoadServices.SAVE_FILE_NAME);
         LoginConsole login = new LoginConsole();
         login.printPrompt(AbstractConsole.PromptMessage.WELCOME, true);
+    }
+
+    public static void TestingInit() {
+        casino = new Casino();
+        StatTracker st = new StatTracker();
+        SaveLoadServices.loadJSONData(SaveLoadServices.SAVE_FILE_NAME);
     }
 
     public static void updatePlayer(Game currentGame) {

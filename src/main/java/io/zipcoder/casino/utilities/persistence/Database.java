@@ -38,12 +38,11 @@ public class Database {
     public static Player processStats(Player currentPlayer) {
         Player processedPlayer = currentPlayer;
         processedPlayer.setBlackJackWins(StatTracker.blackJackWins);
-        processedPlayer.setLoopyWins(StatTracker.blackJackWins);
-        processedPlayer.setCrapsWins(StatTracker.blackJackWins);
-        processedPlayer.setGoFishWins(StatTracker.blackJackWins);
+        processedPlayer.setLoopyWins(StatTracker.loopyWins);
+        processedPlayer.setCrapsWins(StatTracker.crapsWins);
+        processedPlayer.setGoFishWins(StatTracker.goFishWins);
         processedPlayer.setOverallLosses(StatTracker.overallLosses);
         processedPlayer.setHighestChipValue(StatTracker.highestChipValue);
-        processedPlayer.setLoopyWins(StatTracker.loopyWins);
         processedPlayer.setTotalCashSpent(StatTracker.totalCashSpent);
         processedPlayer.setTotalLifetimeChipWinnings(StatTracker.totalLifetimeChipWinnings);
         int gamblingWins = StatTracker.crapsWins + StatTracker.blackJackWins;

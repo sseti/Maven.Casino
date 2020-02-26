@@ -1,5 +1,7 @@
 package io.zipcoder.casino.players;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.zipcoder.casino.models.Wallet;
 
 public class Player {
@@ -21,7 +23,6 @@ public class Player {
     // For tests
     public Player(String name) {
         this.name = name;
-        this.wallet = wallet;
     }
 
     public Player(String name, String password, Wallet wallet) {
@@ -30,7 +31,8 @@ public class Player {
         this.wallet = wallet;
     }
 
-    public Player(String name, String password, Wallet wallet, int blackJackWins, int goFishWins, int loopyWins, int crapsWins, int highestChipValue, int overallWins, int overallLosses, int gamblingWins, int totalLifetimeChipWinnings, int totalCashSpent) {
+    @JsonCreator
+    public Player(@JsonProperty("name")String name, @JsonProperty("password")String password, @JsonProperty("wallet")Wallet wallet, @JsonProperty("blackJackWins")int blackJackWins, @JsonProperty("goFishWins")int goFishWins, @JsonProperty("loopyWins")int loopyWins, @JsonProperty("crapsWins")int crapsWins, @JsonProperty("highestChipValue")int highestChipValue, @JsonProperty("overallWins")int overallWins, @JsonProperty("overallLosses")int overallLosses, @JsonProperty("gamblingWins")int gamblingWins, @JsonProperty("totalLifetimeChipWinnings")int totalLifetimeChipWinnings, @JsonProperty("totalCashSpent")int totalCashSpent) {
         this.name = name;
         this.password = password;
         this.wallet = wallet;
