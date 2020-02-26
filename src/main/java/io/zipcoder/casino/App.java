@@ -23,7 +23,7 @@ public class App {
         Player playTest = new PlayerBuilder().setName("").setPassword("").setWallet(new Wallet()).createPlayer();
 
         // Example print
-        ConsoleServices.print("My cool message");
+        //ConsoleServices.print("My cool message");
 
     }
 
