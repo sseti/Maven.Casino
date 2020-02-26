@@ -14,7 +14,7 @@ public class Deck {
         ArrayList<PlayingCard> toDraw = new ArrayList<>(52);
         int drawsLeft = amt;
         while (drawsLeft > 0 && this.cards.size() > 0) {
-            toDraw.add(this.cards.get(generator.nextInt(toDraw.size())));
+            toDraw.add(this.cards.remove(generator.nextInt(toDraw.size())));
             drawsLeft--;
         }
         return toDraw;

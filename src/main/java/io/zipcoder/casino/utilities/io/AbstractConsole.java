@@ -56,6 +56,7 @@ public abstract class AbstractConsole {
             ConsoleServices.print(MenuStrings.gamesMenuCommands);
         } else if (consoleType instanceof StatsConsole) {
             ConsoleServices.print(MenuStrings.statsMenuCommands);
+
         }
     }
 
