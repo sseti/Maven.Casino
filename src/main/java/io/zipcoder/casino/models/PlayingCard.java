@@ -1,5 +1,8 @@
 package io.zipcoder.casino.models;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class PlayingCard {
 
     private Rank value;
@@ -42,6 +45,7 @@ public class PlayingCard {
 
         Rank(int i) {}
     }
+
 
     @Override
     public String toString() {

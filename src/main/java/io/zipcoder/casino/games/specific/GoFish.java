@@ -5,9 +5,13 @@ import io.zipcoder.casino.games.CardGame;
 import io.zipcoder.casino.games.Game;
 import io.zipcoder.casino.players.GoFishPlayer;
 import io.zipcoder.casino.players.Player;
+import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
 import javax.smartcardio.Card;
+
+
+
 
 public class GoFish extends Game implements CardGame {
 
@@ -29,6 +33,21 @@ public class GoFish extends Game implements CardGame {
 
         // game logic
 
-        StatTracker.finishGame(this, playerWon);
+        ConsoleServices.print("Welcome to GoFish!");
+
+        //check if player has a double
+
+       // if (checkIfWinner(GoFishPlayer)){
+       //     ConsoleServices.print("\n" + GoFishPlayer.getID() + " is the winner with : \n");
+      //      displayResults();
+       //     break;
+        }
+
+       // StatTracker.finishGame(this, playerWon);
+   // }
+
+   // public void checkIfWinner() {
+
     }
-}
+
+
