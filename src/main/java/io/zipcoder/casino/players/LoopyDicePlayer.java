@@ -2,23 +2,25 @@ package io.zipcoder.casino.players;
 
 import io.zipcoder.casino.models.Wallet;
 
-public class LoopDicePlayer extends DicePlayer  {
+public class LoopyDicePlayer extends DicePlayer  {
 
     private int bustValue;
     private int score;
 
     // For tests
-    public LoopDicePlayer(String name) {
+    public LoopyDicePlayer(String name) {
         super(name);
     }
 
-    public LoopDicePlayer(String name, String password, Wallet wallet) {
+    public LoopyDicePlayer(String name, String password, Wallet wallet) {
         super(name, password, wallet);
     }
 
-    public LoopDicePlayer(Player player) {
+    public LoopyDicePlayer(Player player) {
         super(player.getName(), player.getPassword(), player.getWallet());
     }
+
+
 
     public void incrementDice() {
 

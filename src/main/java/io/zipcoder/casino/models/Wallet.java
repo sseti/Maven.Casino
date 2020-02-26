@@ -10,11 +10,21 @@ public class Wallet {
     private Map<Chip, Integer> chips;
     private Player owner;
 
+    public Wallet() {
+        this(0);
+    }
+
+    public Wallet(int dollars) {
+        this.dollars = dollars;
+    }
+
     public boolean addDollar(int amt) {
+        dollars += amt;
         return false;
     }
 
     public boolean addChip(Chip chip) {
+
         return false;
     }
 
@@ -41,4 +51,5 @@ public class Wallet {
     public Player getOwner() {
         return owner;
     }
+
 }

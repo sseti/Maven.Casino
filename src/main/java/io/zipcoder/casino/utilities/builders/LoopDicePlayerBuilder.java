@@ -1,7 +1,7 @@
 package io.zipcoder.casino.utilities.builders;
 
 import io.zipcoder.casino.models.Wallet;
-import io.zipcoder.casino.players.LoopDicePlayer;
+import io.zipcoder.casino.players.LoopyDicePlayer;
 
 public class LoopDicePlayerBuilder {
     private String name;
@@ -23,7 +23,7 @@ public class LoopDicePlayerBuilder {
         return this;
     }
 
-    public LoopDicePlayer createLoopDicePlayer() {
-        return new LoopDicePlayer(name, password, wallet);
+    public LoopyDicePlayer createLoopDicePlayer() {
+        return new LoopyDicePlayer(name, password, wallet);
     }
 }

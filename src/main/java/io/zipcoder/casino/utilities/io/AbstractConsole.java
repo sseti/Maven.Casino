@@ -47,12 +47,16 @@ public abstract class AbstractConsole {
     protected void printHelpCommand(AbstractConsole consoleType) {
         if (consoleType instanceof LoginConsole) {
            ConsoleServices.print(MenuStrings.loginMenuCommands);
-        } else if (consoleType instanceof CurrencyConsole) {
+        } else if (consoleType instanceof MainConsole) {
+            ConsoleServices.print(MenuStrings.mainMenuCommands);
+        }
+        else if (consoleType instanceof CurrencyConsole) {
             ConsoleServices.print(MenuStrings.currencyMenuCommands);
         } else if (consoleType instanceof GamesConsole) {
             ConsoleServices.print(MenuStrings.gamesMenuCommands);
         } else if (consoleType instanceof StatsConsole) {
             ConsoleServices.print(MenuStrings.statsMenuCommands);
+
         }
     }
 
