@@ -21,15 +21,15 @@ public class Deck {
     }
 
     public void generateDeck(int deckSize) {
-        for(int i=cards.size(); i>0; --i) {
-            int index = generator.nextInt(i);
-            cards.add(cards.remove(index));
+        int n = 0;
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 4; j++) {
+               // PlayingCard card = new PlayingCard(suit.size());
+                n++;
+
+            }
+            Collections.shuffle(cards);
+
         }
-        Collections.shuffle(cards);
-
     }
-    public void setSeed() {
-        this.generator.setSeed(34);
-    }
-
 }

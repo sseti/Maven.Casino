@@ -11,13 +11,14 @@ public class DeckTest {
     public void drawTest() {
         //given
         Deck newDeck = new Deck();
+        ArrayList<PlayingCard> cards = new ArrayList<>();
         newDeck.generateDeck(Deck.DECKSIZE);
-        newDeck.setSeed();
-        //when
-        ArrayList<PlayingCard> drawnCards = newDeck.draw(1);
-        //boolean expected2 = newDeck.draw(2);
-        //then
-        //Assert.assertEquals(expected, actual);
-    }
 
+        // when
+        int expected = 52;
+        int actual = cards.size();
+
+        // then
+        Assert.assertEquals(expected, actual);
+    }
 }

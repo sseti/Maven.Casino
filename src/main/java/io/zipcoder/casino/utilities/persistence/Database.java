@@ -37,20 +37,20 @@ public class Database {
 
     public static Player processStats(Player currentPlayer) {
         Player processedPlayer = currentPlayer;
-        processedPlayer.setBlackJackWins(StatTracker.blackJackWins);
-        processedPlayer.setLoopyWins(StatTracker.blackJackWins);
-        processedPlayer.setCrapsWins(StatTracker.blackJackWins);
-        processedPlayer.setGoFishWins(StatTracker.blackJackWins);
-        processedPlayer.setOverallLosses(StatTracker.overallLosses);
-        processedPlayer.setHighestChipValue(StatTracker.highestChipValue);
-        processedPlayer.setLoopyWins(StatTracker.loopyWins);
-        processedPlayer.setTotalCashSpent(StatTracker.totalCashSpent);
-        processedPlayer.setTotalLifetimeChipWinnings(StatTracker.totalLifetimeChipWinnings);
+        processedPlayer.getStats().setBlackJackWins(StatTracker.blackJackWins);
+        processedPlayer. getStats().setLoopyWins(StatTracker.blackJackWins);
+        processedPlayer. getStats().setCrapsWins(StatTracker.blackJackWins);
+        processedPlayer.getStats().setGoFishWins(StatTracker.blackJackWins);
+        processedPlayer. getStats().setOverallLosses(StatTracker.overallLosses);
+        processedPlayer.getStats().setHighestChipValue(StatTracker.highestChipValue);
+        processedPlayer. getStats().setLoopyWins(StatTracker.loopyWins);
+        processedPlayer. getStats().setTotalCashSpent(StatTracker.totalCashSpent);
+        processedPlayer. getStats().setTotalLifetimeChipWinnings(StatTracker.totalLifetimeChipWinnings);
         int gamblingWins = StatTracker.crapsWins + StatTracker.blackJackWins;
         int nonGamblingWins = StatTracker.loopyWins + StatTracker.goFishWins;
         int totalWins = gamblingWins + nonGamblingWins;
-        processedPlayer.setOverallWins(totalWins);
-        processedPlayer.setGamblingWins(gamblingWins);
+        processedPlayer. getStats().setOverallWins(totalWins);
+        processedPlayer. getStats().setGamblingWins(gamblingWins);
         return processedPlayer;
     }
 
