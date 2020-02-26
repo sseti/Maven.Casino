@@ -7,6 +7,7 @@ import io.zipcoder.casino.models.Chip;
 import io.zipcoder.casino.models.Deck;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.players.BlackJackPlayer;
+import io.zipcoder.casino.players.Dealer;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
 import java.util.ArrayList;
@@ -17,10 +18,11 @@ public class BlackJack extends Game implements CardGame {
     private boolean isPlayerBust;
     private int value;
     private Deck deck;
+    Dealer dealer;
+    BlackJackPlayer player;
 
-    public void newDeal(int placeBet) {
+    public void newDeal() {
 
-        int bet = placeBet;
         deck.draw(2);
         //asks player to place bet;
         //deal 2 cards to each player
@@ -28,16 +30,16 @@ public class BlackJack extends Game implements CardGame {
 
     }
    /* public int getValue(){
-
-        if (Rank >10){
-            value = 10;
+        for (int i =0; i < hand.size(); i++;{
+            if (value1 >10){
+                value = 10;
         }
-        else if (Rank == 1){
-            value = 11;
+            else if (value == 1){
+                 value = 11;
         }
-        else {
-            value = Rank;
-        }
+            else {
+                 value = Rank;
+        }}
         return value;
     }*/
 
@@ -49,7 +51,12 @@ public class BlackJack extends Game implements CardGame {
 
         // game logic
         //newDeal
+        newDeal();
+       // player.getHandValue;
         //get value of players hand
+       // if(player.getHandValue > 21){
+            //does player want to hit || stand
+       // }
         //ask player to hit, stand, split, doubleDown
         //reveal dealers hand, if dealer is < 16 hit, if dealer is >=17 stand
         //if dealer isbust || player hand > dealer, Player wins
