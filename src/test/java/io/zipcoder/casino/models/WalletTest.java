@@ -10,7 +10,7 @@ public class WalletTest{
 
     @Test
     public void addDollarTest(){
-        Wallet wallet = new Wallet(100);
+        Wallet wallet = new Wallet(0);
         int amt = 150;
         int dollarsTotal = wallet.getDollars() + amt;
         wallet.addDollar(dollarsTotal);

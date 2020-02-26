@@ -5,38 +5,34 @@ import java.util.Map;
 public class Chip {
 
     private int dollarVal;
-    private static final int WHITE = 1;
-    private static final int BLUE = 5;
-    private static final int GREEN = 25;
-    private static final int BLACK = 100;
+
 
 
     public int getDollarVal(int chipValue) { return chipValue; }
 
     public static int getWHITE() {
-        return WHITE;
+        return ChipValue.WHITE.ordinal();
     }
 
     public static int getBLUE() {
-        return BLUE;
+        return ChipValue.BLUE.ordinal();
     }
 
     public static int getGREEN() {
-        return GREEN;
+        return ChipValue.GREEN.ordinal();
     }
 
     public static int getBLACK() {
-        return BLACK;
+        return ChipValue.BLACK.ordinal();
     }
 
 
     public enum ChipValue {
-        WHITE,
-        BLUE,
-        GREEN,
-        BLACK;
+        WHITE(1),
+        BLUE(5),
+        GREEN(25),
+        BLACK(100);
 
-
-
+        ChipValue(int i){}
     }
 }

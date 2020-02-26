@@ -15,10 +15,12 @@ public class Wallet {
     }
 
     public boolean addDollar(int amt) {
+        dollars += amt;
         return false;
     }
 
     public boolean addChip(Chip chip) {
+
         return false;
     }
 
