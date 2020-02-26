@@ -9,68 +9,46 @@ import java.util.Map;
 public class WalletTest{
 
     @Test
-    public void addDollarTest(){
-        Wallet wallet = new Wallet(0);
-        int amt = 150;
-        int dollarsTotal = wallet.getDollars() + amt;
-        wallet.addDollar(dollarsTotal);
-        int expected = wallet.getDollars();
+    public void dollarValTest(){
 
-        Assert.assertEquals(expected, dollarsTotal);
-    }
-
-    @Test
-    public void addChipTest(){
-        Wallet wallet = new Wallet(100);
-        Map<Chip, Integer> chip = new HashMap<>();
-        Chip white = new Chip();
-        wallet.addChip(white);
         int expected = 1;
-        int totalChips = 0;
-        for (Map.Entry<Chip, Integer> i : chip.entrySet()){
-            totalChips += i.getValue();
-        }
-
-        Assert.assertEquals(expected, totalChips);
-    }
-
-    @Test
-    public void subDollarTest(){
-        Wallet wallet = new Wallet(90);
-        int amt = 25;
-        wallet.subDollar(amt);
-        int actual = wallet.getDollars();
-        int expected = 90 - amt;
+        int actual = Chip.getWHITE();
 
         Assert.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void subChipTest(){
-        Wallet wallet = new Wallet(100);
-        Map<Chip, Integer> chip = new HashMap<>();
-        Chip black = new Chip();
-        chip.put(black,6);
-        wallet.subChip(black);
-        int totalChips = 0;
-        for (Map.Entry<Chip, Integer> i : chip.entrySet()) {
-            totalChips += i.getValue();
-        }
-
+    public void dollarValTest2(){
         int expected = 5;
-        int actual = totalChips;
+        int actual = Chip.getBLUE();
 
         Assert.assertEquals(expected, actual);
     }
 
-   /* @Test
-    public void subChipByDollar(){
-        Wallet wallet = new Wallet(100);
-        Map<Chip, Integer> chip = new HashMap<>();
-        Chip black = new Chip();
-        chip.put(black,6);
-        wallet.subChip(100);
-    }*/
+    @Test
+    public void dollarValTest3() {
+        int expected = 25;
+        int actual = Chip.getGREEN();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void dollarValTest4() {
+        int expected = 100;
+        int actual = Chip.getBLACK();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getDollarTest1(){
+        Chip chip = new Chip(Chip.ChipValue.WHITE);
+        int expected = 1;
+        int actual = chip.getDollarVal();
+
+        Assert.assertEquals(expected, actual);
+    }
 
 }
