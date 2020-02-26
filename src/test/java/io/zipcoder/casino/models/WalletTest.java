@@ -25,10 +25,13 @@ public class WalletTest{
         Map<Chip, Integer> chip = new HashMap<>();
         Chip white = new Chip();
         wallet.addChip(white);
-        boolean expected = false;
-        boolean actual = chip.isEmpty();
+        int expected = 1;
+        int totalChips = 0;
+        for (Map.Entry<Chip, Integer> i : chip.entrySet()){
+            totalChips += i.getValue();
+        }
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, totalChips);
     }
 
     @Test
@@ -50,11 +53,24 @@ public class WalletTest{
         Chip black = new Chip();
         chip.put(black,6);
         wallet.subChip(black);
+        int totalChips = 0;
+        for (Map.Entry<Chip, Integer> i : chip.entrySet()) {
+            totalChips += i.getValue();
+        }
 
         int expected = 5;
-        int actual = chip.size();
+        int actual = totalChips;
 
         Assert.assertEquals(expected, actual);
     }
+
+   /* @Test
+    public void subChipByDollar(){
+        Wallet wallet = new Wallet(100);
+        Map<Chip, Integer> chip = new HashMap<>();
+        Chip black = new Chip();
+        chip.put(black,6);
+        wallet.subChip(100);
+    }*/
 
 }
