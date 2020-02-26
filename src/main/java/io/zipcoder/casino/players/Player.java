@@ -8,9 +8,11 @@ public class Player {
     private int age;
     private Wallet wallet;
 
-    public Player(String name, int age);
-    this.name = name;
-    this.age = age;
+    public Player(String name, int age) {
+        this.name = name;
+
+    }
+
 
     public String getName() {
         return name;
