@@ -18,6 +18,10 @@ public class Database {
         return usersByName.containsKey(name) ? true : false;
     }
 
+    public static Player getPlayer(String name) {
+        return usersByName.get(name);
+    }
+
     public static void addUser(Player user) {
         usersByName.put(user.getName(), user);
     }
@@ -29,6 +33,25 @@ public class Database {
         }
 
         return toRet;
+    }
+
+    public static Player processStats(Player currentPlayer) {
+        Player processedPlayer = currentPlayer;
+        processedPlayer.setBlackJackWins(StatTracker.blackJackWins);
+        processedPlayer.setLoopyWins(StatTracker.blackJackWins);
+        processedPlayer.setCrapsWins(StatTracker.blackJackWins);
+        processedPlayer.setGoFishWins(StatTracker.blackJackWins);
+        processedPlayer.setOverallLosses(StatTracker.overallLosses);
+        processedPlayer.setHighestChipValue(StatTracker.highestChipValue);
+        processedPlayer.setLoopyWins(StatTracker.loopyWins);
+        processedPlayer.setTotalCashSpent(StatTracker.totalCashSpent);
+        processedPlayer.setTotalLifetimeChipWinnings(StatTracker.totalLifetimeChipWinnings);
+        int gamblingWins = StatTracker.crapsWins + StatTracker.blackJackWins;
+        int nonGamblingWins = StatTracker.loopyWins + StatTracker.goFishWins;
+        int totalWins = gamblingWins + nonGamblingWins;
+        processedPlayer.setOverallWins(totalWins);
+        processedPlayer.setGamblingWins(gamblingWins);
+        return processedPlayer;
     }
 
     public static void reloadAllUsers(ArrayList<Player> players) {

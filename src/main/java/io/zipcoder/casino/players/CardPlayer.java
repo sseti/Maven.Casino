@@ -1,31 +1,36 @@
 package io.zipcoder.casino.players;
 
+import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.models.Wallet;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 public class CardPlayer extends Player {
 
-    private ArrayList<Card> hand;
+    private ArrayList<PlayingCard> hand;
 
-    public CardPlayer(String name, String password, int age, Wallet wallet) {
-        super(name, password, age, wallet);
+    // For tests
+    public CardPlayer(String name) {
+       super(name);
+    }
+
+    public CardPlayer(String name, String password, Wallet wallet) {
+        super(name, password, wallet);
     }
 
     public CardPlayer(Player player) {
-        super(player.getName(), player.getPassword(), player.getAge(), player.getWallet());
+        super(player.getName(), player.getPassword(), player.getWallet());
     }
 
-    public ArrayList<Card> getHand() {
+    public ArrayList<PlayingCard> getHand() {
         return hand;
     }
 
-    public void addCardToHand(Card card) {
+    public void addCardToHand(PlayingCard card) {
         this.hand.add(card);
     }
 
-    public void removeCard(Card card) {
+    public void removeCard(PlayingCard card) {
         this.hand.remove(card);
     }
 }

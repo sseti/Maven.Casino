@@ -8,12 +8,17 @@ public class GoFishPlayer extends CardPlayer {
 
     private int pairs;
 
-    public GoFishPlayer(String name, String password, int age, Wallet wallet) {
-        super(name, password, age, wallet);
+    // For tests
+    public GoFishPlayer(String name) {
+        super(name);
+    }
+
+    public GoFishPlayer(String name, String password, Wallet wallet) {
+        super(name, password, wallet);
     }
 
     public GoFishPlayer(Player player) {
-        super(player.getName(), player.getPassword(), player.getAge(), player.getWallet());
+        super(player.getName(), player.getPassword(), player.getWallet());
     }
 
     public boolean hasCard(Card card) {

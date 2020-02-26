@@ -36,9 +36,7 @@ public abstract class AbstractConsole {
         STATS_MENU,
         LOGIN,
         WELCOME,
-        BAD_LOGIN,
-        BAD_REGISTRY,
-        GOOD_REGISTRY
+        BAD_LOGIN
     }
 
     public AbstractConsole() {

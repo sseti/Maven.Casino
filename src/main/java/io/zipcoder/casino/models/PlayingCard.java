@@ -5,6 +5,11 @@ public class PlayingCard {
     private Rank value;
     private Suit suit;
 
+    public PlayingCard(Rank value, Suit suit) {
+        this.value = value;
+        this.suit = suit;
+    }
+
     public Rank getValue() {
         return value;
     }
@@ -36,5 +41,10 @@ public class PlayingCard {
         KING (13);
 
         Rank(int i) {}
+    }
+
+    @Override
+    public String toString() {
+        return this.value + " of " + this.suit;
     }
 }

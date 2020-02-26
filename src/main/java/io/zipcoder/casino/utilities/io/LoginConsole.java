@@ -10,10 +10,14 @@ import io.zipcoder.casino.utilities.persistence.SaveLoadServices;
 import java.util.ArrayList;
 
 public class LoginConsole extends AbstractConsole {
+
+    private boolean loggedIn = false;
+
     @Override
     protected void initializeCommands() {
         consoleCommands.put("help", Command.HELP);
         consoleCommands.put("register", Command.REGISTER);
+        consoleCommands.put("logout", Command.LOGOUT);
     }
 
     @Override
@@ -36,6 +40,11 @@ public class LoginConsole extends AbstractConsole {
                 return;
             case BAD_COMMAND:
                 ConsoleServices.print("Bad command! Please enter a valid command, or enter 'Help'.");
+                if (this.loggedIn) {
+                    printPrompt(PromptMessage.STANDARD, true);
+                } else {
+                    printPrompt(PromptMessage.WELCOME, true);
+                }
                 return;
             case LOGOUT:
                 SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
@@ -51,7 +60,13 @@ public class LoginConsole extends AbstractConsole {
     }
 
     public Boolean attemptLogin(ArrayList<String> args) {
-        return Database.canLogin(getUserFromInput(args), getPasswordFromInput(args));
+        String user = getUserFromInput(args);
+        Boolean loggedIn = Database.canLogin(user, getPasswordFromInput(args));
+        if (loggedIn) {
+           App.logPlayerIn(Database.getPlayer(user));
+           this.loggedIn = true;
+        }
+        return loggedIn;
     }
 
     public Boolean attemptRegister(ArrayList<String> args) {
@@ -59,12 +74,13 @@ public class LoginConsole extends AbstractConsole {
         String pass = getPasswordFromInput(args);
         if (!Database.isUser(user)) {
             Player newUser = new PlayerBuilder()
-                    .setAge(21)
                     .setName(user)
                     .setPassword(pass)
                     .setWallet(new Wallet())
                     .createPlayer();
             Database.addUser(newUser);
+            App.logPlayerIn(Database.getPlayer(user));
+            loggedIn = true;
             return true;
         }
         return false;

@@ -67,11 +67,7 @@ public class MenuStrings {
                 return "";
             case STATS_MENU:
                 return "";
-            case BAD_REGISTRY:
-                return "";
             case CURRENCY_MENU:
-                return "";
-            case GOOD_REGISTRY:
                 return "";
             default:
                 return "";

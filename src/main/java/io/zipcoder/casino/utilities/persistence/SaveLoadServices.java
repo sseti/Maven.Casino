@@ -6,24 +6,32 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import io.zipcoder.casino.App;
 import io.zipcoder.casino.players.Player;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class SaveLoadServices {
 
     public static String SAVE_FILE_NAME = "PlayerData";
 
     public static void saveJSON(String fileName) {
+        Player toProcessStatsFor = App.getCurrentPlayer();
+        toProcessStatsFor = Database.processStats(toProcessStatsFor);
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         String playerSaveFile = "/Users/Casino/" + fileName + ".json";
         if (!fileName.equals("")) {
             try {
                 writer.writeValue(new File(playerSaveFile), Database.getAllPlayers());
-            } catch (IOException e) {}
+                Logger.getGlobal().info("Saved JSON data successfully!");
+            } catch (IOException e) {
+                Logger.getGlobal().info("IOException when attempting to save JSON data!");
+            }
         }
     }
 
@@ -32,7 +40,10 @@ public class SaveLoadServices {
         String fullFile = "/Users/Casino/" + fileName + ".json";
         try {
             Database.reloadAllUsers(objectMapper.readValue(new File(fullFile), new TypeReference<ArrayList<Player>>(){}));
-        } catch (JsonParseException e) {} catch (JsonMappingException e) {} catch (IOException e) {}
+            Logger.getGlobal().info("Loaded JSON player data successfully.");
+        } catch (JsonParseException e) {} catch (JsonMappingException e) {} catch (IOException e) {
+            Logger.getGlobal().info("IOException when attempting to load JSON player data!");
+        }
     }
 
 

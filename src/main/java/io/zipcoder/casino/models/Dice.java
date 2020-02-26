@@ -1,15 +1,25 @@
 package io.zipcoder.casino.models;
 
+import java.util.Random;
+
 public class Dice {
 
-    private int numFaces;
+    private int numFaces = 6;
+    private Random rgen = new Random();
 
     public int toss() {
-        return 0;
+        return rgen.nextInt(numFaces) + 1;
     }
 
     public int getNumFaces() {
-        return 0;
+        return this.numFaces;
     }
 
+    public void setSeed() {
+        this.rgen.setSeed(72);
+    }
+
+    public void setNumFaces(int numFaces) {
+        this.numFaces = numFaces;
+    }
 }

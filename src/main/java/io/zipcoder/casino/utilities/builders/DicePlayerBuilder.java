@@ -6,7 +6,6 @@ import io.zipcoder.casino.players.DicePlayer;
 public class DicePlayerBuilder {
     private String name;
     private String password;
-    private int age;
     private Wallet wallet;
 
     public DicePlayerBuilder setName(String name) {
@@ -19,17 +18,12 @@ public class DicePlayerBuilder {
         return this;
     }
 
-    public DicePlayerBuilder setAge(int age) {
-        this.age = age;
-        return this;
-    }
-
     public DicePlayerBuilder setWallet(Wallet wallet) {
         this.wallet = wallet;
         return this;
     }
 
     public DicePlayer createDicePlayer() {
-        return new DicePlayer(name, password, age, wallet);
+        return new DicePlayer(name, password, wallet);
     }
 }

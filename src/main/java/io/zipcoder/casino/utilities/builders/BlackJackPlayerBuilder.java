@@ -6,7 +6,6 @@ import io.zipcoder.casino.players.BlackJackPlayer;
 public class BlackJackPlayerBuilder {
     private String name;
     private String password;
-    private int age;
     private Wallet wallet;
 
     public BlackJackPlayerBuilder setName(String name) {
@@ -19,17 +18,12 @@ public class BlackJackPlayerBuilder {
         return this;
     }
 
-    public BlackJackPlayerBuilder setAge(int age) {
-        this.age = age;
-        return this;
-    }
-
     public BlackJackPlayerBuilder setWallet(Wallet wallet) {
         this.wallet = wallet;
         return this;
     }
 
     public BlackJackPlayer createBlackJackPlayer() {
-        return new BlackJackPlayer(name, password, age, wallet);
+        return new BlackJackPlayer(name, password, wallet);
     }
 }

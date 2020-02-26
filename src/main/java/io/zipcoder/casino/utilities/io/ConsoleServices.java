@@ -3,6 +3,8 @@ package io.zipcoder.casino.utilities.io;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import java.util.Scanner;
 
+
+// ALL printing is to be done through this class!
 public final class ConsoleServices {
 
     public static void print(String message) {

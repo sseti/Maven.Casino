@@ -7,12 +7,17 @@ public class LoopDicePlayer extends DicePlayer  {
     private int bustValue;
     private int score;
 
-    public LoopDicePlayer(String name, String password, int age, Wallet wallet) {
-        super(name, password, age, wallet);
+    // For tests
+    public LoopDicePlayer(String name) {
+        super(name);
+    }
+
+    public LoopDicePlayer(String name, String password, Wallet wallet) {
+        super(name, password, wallet);
     }
 
     public LoopDicePlayer(Player player) {
-        super(player.getName(), player.getPassword(), player.getAge(), player.getWallet());
+        super(player.getName(), player.getPassword(), player.getWallet());
     }
 
     public void incrementDice() {

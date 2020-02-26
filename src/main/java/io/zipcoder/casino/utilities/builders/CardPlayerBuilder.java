@@ -6,7 +6,6 @@ import io.zipcoder.casino.players.CardPlayer;
 public class CardPlayerBuilder {
     private String name;
     private String password;
-    private int age;
     private Wallet wallet;
 
     public CardPlayerBuilder setName(String name) {
@@ -19,10 +18,7 @@ public class CardPlayerBuilder {
         return this;
     }
 
-    public CardPlayerBuilder setAge(int age) {
-        this.age = age;
-        return this;
-    }
+
 
     public CardPlayerBuilder setWallet(Wallet wallet) {
         this.wallet = wallet;
@@ -30,6 +26,6 @@ public class CardPlayerBuilder {
     }
 
     public CardPlayer createCardPlayer() {
-        return new CardPlayer(name, password, age, wallet);
+        return new CardPlayer(name, password, wallet);
     }
 }

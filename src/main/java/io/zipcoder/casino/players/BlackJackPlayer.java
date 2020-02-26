@@ -1,5 +1,6 @@
 package io.zipcoder.casino.players;
 
+import io.zipcoder.casino.games.specific.BlackJack;
 import io.zipcoder.casino.models.Chip;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.models.Wallet;
@@ -12,12 +13,17 @@ public class BlackJackPlayer extends CardPlayer {
     private int handValue;
     private int splitValue;
 
-    public BlackJackPlayer(String name, String password, int age, Wallet wallet) {
-        super(name, password, age, wallet);
+    // For tests
+    public BlackJackPlayer(String name) {
+        super(name);
+    }
+
+    public BlackJackPlayer(String name, String password, Wallet wallet) {
+        super(name, password, wallet);
     }
 
     public BlackJackPlayer(Player player) {
-        super(player.getName(), player.getPassword(), player.getAge(), player.getWallet());
+        super(player.getName(), player.getPassword(), player.getWallet());
     }
 
     public int hit(Player p) {
