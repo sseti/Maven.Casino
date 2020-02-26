@@ -9,11 +9,14 @@ import java.util.ArrayList;
 public class BlackJack extends Game implements CardGame {
 
     private ArrayList<Chip> bets;
-    private boolean isPlayerBust;
+    private boolean doesPlayerWin;
 
     public void newDeal() {
 
     }
+    public boolean placeBet(int dollarAmt){return false;}
+
+    public boolean placeBet(ArrayList<Chip> chips){return false;}
 
     @Override
     public void runGame() {

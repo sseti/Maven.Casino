@@ -9,7 +9,5 @@ import java.util.Map;
 
 public class BlackJackTest {
 
-    @Test
-    public void newDealTest(){}
 
 }
