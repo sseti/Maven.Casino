@@ -12,6 +12,10 @@ public class Chip {
         this.val = val;
     }
 
+    public ChipValue getVal() {
+        return val;
+    }
+
     public int getDollarVal() {
         if(val == ChipValue.WHITE){
             dollarVal = getWHITE();
