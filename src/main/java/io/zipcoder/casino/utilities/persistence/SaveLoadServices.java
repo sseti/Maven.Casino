@@ -22,6 +22,7 @@ public class SaveLoadServices {
     public static void saveJSON(String fileName) {
         Player toProcessStatsFor = App.getCurrentPlayer();
         toProcessStatsFor = Database.processStats(toProcessStatsFor);
+        Database.addUser(toProcessStatsFor);
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         String playerSaveFile = "/Users/Casino/" + fileName + ".json";

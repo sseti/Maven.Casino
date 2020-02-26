@@ -7,9 +7,6 @@ public class Player {
     private String name;
     private String password;
     private Wallet wallet;
-
-    // Stats fields
-    // Should be a separate object, but I am worried about proper JSON deserialization
     private int blackJackWins = 0;
     private int goFishWins = 0;
     private int loopyWins = 0;
@@ -31,6 +28,22 @@ public class Player {
         this.name = name;
         this.password = password;
         this.wallet = wallet;
+    }
+
+    public Player(String name, String password, Wallet wallet, int blackJackWins, int goFishWins, int loopyWins, int crapsWins, int highestChipValue, int overallWins, int overallLosses, int gamblingWins, int totalLifetimeChipWinnings, int totalCashSpent) {
+        this.name = name;
+        this.password = password;
+        this.wallet = wallet;
+        this.blackJackWins = blackJackWins;
+        this.goFishWins = goFishWins;
+        this.loopyWins = loopyWins;
+        this.crapsWins = crapsWins;
+        this.highestChipValue = highestChipValue;
+        this.overallWins = overallWins;
+        this.overallLosses = overallLosses;
+        this.gamblingWins = gamblingWins;
+        this.totalLifetimeChipWinnings = totalLifetimeChipWinnings;
+        this.totalCashSpent = totalCashSpent;
     }
 
     public String getName() {
@@ -81,5 +94,45 @@ public class Player {
 
     public void setTotalCashSpent(int totalCashSpent) {
         this.totalCashSpent = totalCashSpent;
+    }
+
+    public int getBlackJackWins() {
+        return blackJackWins;
+    }
+
+    public int getGoFishWins() {
+        return goFishWins;
+    }
+
+    public int getLoopyWins() {
+        return loopyWins;
+    }
+
+    public int getCrapsWins() {
+        return crapsWins;
+    }
+
+    public int getHighestChipValue() {
+        return highestChipValue;
+    }
+
+    public int getOverallWins() {
+        return overallWins;
+    }
+
+    public int getOverallLosses() {
+        return overallLosses;
+    }
+
+    public int getGamblingWins() {
+        return gamblingWins;
+    }
+
+    public int getTotalLifetimeChipWinnings() {
+        return totalLifetimeChipWinnings;
+    }
+
+    public int getTotalCashSpent() {
+        return totalCashSpent;
     }
 }

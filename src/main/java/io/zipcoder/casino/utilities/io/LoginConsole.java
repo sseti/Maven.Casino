@@ -47,7 +47,9 @@ public class LoginConsole extends AbstractConsole {
                 }
                 return;
             case LOGOUT:
-                SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
+                if (loggedIn) {
+                    SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
+                }
                 return;
             default:
                 if (attemptLogin(args)) {
