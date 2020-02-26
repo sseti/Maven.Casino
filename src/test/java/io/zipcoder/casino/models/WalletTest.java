@@ -21,9 +21,9 @@ public class WalletTest{
 
     @Test
     public void addChipTest(){
-        Wallet wallet = new Wallet(100);
+        Wallet wallet = new Wallet(0);
         Map<Chip, Integer> chip = new HashMap<>();
-        Chip white = new Chip();
+        Chip white = new Chip(Chip.ChipValue.WHITE);
         wallet.addChip(white);
         int expected = 1;
         int totalChips = 0;
@@ -50,7 +50,7 @@ public class WalletTest{
     public void subChipTest(){
         Wallet wallet = new Wallet(100);
         Map<Chip, Integer> chip = new HashMap<>();
-        Chip black = new Chip();
+        Chip black = new Chip(Chip.ChipValue.BLACK);
         chip.put(black,6);
         wallet.subChip(black);
         int totalChips = 0;

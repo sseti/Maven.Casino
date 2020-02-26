@@ -42,4 +42,13 @@ public class ChipTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getDollarTest1(){
+        Chip chip = new Chip(Chip.ChipValue.WHITE);
+        int expected = 1;
+        int actual = chip.getDollarVal();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
