@@ -30,7 +30,7 @@ public class WalletTest{
         wallet.addChip(black);
         int expected = 3;
         int totalChips = 0;
-        for (Map.Entry<Chip, Integer> i : wallet.chips.entrySet()) {
+        for (Map.Entry<Chip, Integer> i : wallet.getChips().entrySet()) {
             totalChips += i.getValue();
         }
 
@@ -59,7 +59,7 @@ public class WalletTest{
         wallet.addChip(black);
         wallet.subChip(black);
         int totalChips = 0;
-        for (Map.Entry<Chip, Integer> i : wallet.chips.entrySet()) {
+        for (Map.Entry<Chip, Integer> i : wallet.getChips().entrySet()) {
             totalChips += i.getValue();
         }
 

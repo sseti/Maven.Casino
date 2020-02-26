@@ -16,7 +16,7 @@ public class BlackJack extends Game implements CardGame {
     private ArrayList<Chip> bets;
     private boolean isPlayerBust;
     private int value;
-    Deck deck = new Deck();
+    private Deck deck;
 
     public void newDeal(int placeBet) {
 

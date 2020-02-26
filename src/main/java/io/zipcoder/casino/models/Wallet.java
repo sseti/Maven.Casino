@@ -9,7 +9,7 @@ import java.util.Map;
 public class Wallet {
 
     private int dollars;
-    public Map<Chip, Integer> chips = new HashMap<>();
+    private Map<Chip, Integer> chips = new HashMap<>();
     private Player owner;
 
     public Wallet() {
