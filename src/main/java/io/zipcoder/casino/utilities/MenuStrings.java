@@ -13,6 +13,7 @@ public class MenuStrings {
     public static String currencyMenuCommands;
     public static String gamesMenuCommands;
     public static String statsMenuCommands;
+    public static String mainMenuCommands;
 
     public static void loadStrings() {
 
