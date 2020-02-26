@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.zipcoder.casino.App;
+import io.zipcoder.casino.models.Chip;
 import io.zipcoder.casino.players.Player;
 
 import javax.xml.crypto.Data;
