@@ -1,14 +1,16 @@
 package io.zipcoder.casino.games.specific;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.zipcoder.casino.models.PlayingCard;
-import io.zipcoder.casino.models.Wallet;
-import io.zipcoder.casino.players.CardPlayer;
 import io.zipcoder.casino.players.GoFishPlayer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.hasItems;
+
 public class GoFishTest {
+
 
 
     @Test
@@ -32,5 +34,23 @@ public class GoFishTest {
 
     @Test
     public void getCardFromPlayer() {
+        GoFishPlayer plrToPullFrom = new GoFishPlayer("Big Ragu");
+        GoFish game = new GoFish();
+        PlayingCard six = new PlayingCard(6, PlayingCard.Suit.DIAMONDS);
+        PlayingCard actual = six;
+        List<PlayingCard> expected = plrToPullFrom.getHand();
+        Assert.assertThat(expected, hasItems());
     }
+
+
+    @Test
+    public void getCardFromPlayer2() {
+        GoFishPlayer plrToPullFrom = new GoFishPlayer("Big Flex");
+        GoFish game = new GoFish();
+        PlayingCard two = new PlayingCard(2, PlayingCard.Suit.CLUBS);
+        PlayingCard actual = two;
+        List<PlayingCard> expected = plrToPullFrom.getHand();
+        Assert.assertThat(expected, hasItems());
+    }
+
 }
