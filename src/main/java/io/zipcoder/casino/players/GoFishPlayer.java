@@ -35,13 +35,4 @@ public class GoFishPlayer extends CardPlayer {
         this.gameDrawAmt = gameDrawAmt;
     }
 
-    public String printHand() {
-        String toRet = "";
-        Collections.sort(this.getHand());
-        for (PlayingCard card : this.getHand()) {
-            toRet += card.getValue() + ", ";
-        }
-        toRet = toRet.substring(0, toRet.length() - 2);
-        return toRet;
-    }
 }
