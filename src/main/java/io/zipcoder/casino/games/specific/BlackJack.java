@@ -54,10 +54,14 @@ public class BlackJack extends Game implements CardGame {
         newDeal();
        // player.getHandValue;
         //get value of players hand
+        //while(player.handValue < 21){
+        // if(player.getHand[0] == player.getHand[1]{
+        // does player want to split?}
        // if(player.getHandValue > 21){
             //does player want to hit || stand
-       // }
-        //ask player to hit, stand, split, doubleDown
+       // }}
+        //
+
         //reveal dealers hand, if dealer is < 16 hit, if dealer is >=17 stand
         //if dealer isbust || player hand > dealer, Player wins
 
