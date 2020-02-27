@@ -1,10 +1,8 @@
 package io.zipcoder.casino.utilities.io;
 
-import com.sun.media.jfxmedia.logging.Logger;
 import io.zipcoder.casino.App;
 import io.zipcoder.casino.models.Wallet;
 import io.zipcoder.casino.players.Player;
-import io.zipcoder.casino.utilities.builders.PlayerBuilder;
 import io.zipcoder.casino.utilities.persistence.Database;
 import io.zipcoder.casino.utilities.persistence.SaveLoadServices;
 
@@ -69,11 +67,7 @@ public class LoginConsole extends AbstractConsole {
             String user = args.get(0);
             String pass = args.get(1);
             if (!Database.isUser(user)) {
-                Player newUser = new PlayerBuilder()
-                        .setName(user)
-                        .setPassword(pass)
-                        .setWallet(new Wallet())
-                        .createPlayer();
+                Player newUser = new Player(user, pass, new Wallet());
                 Database.addUser(newUser);
                 App.logPlayerIn(Database.getPlayer(user));
                 loggedIn = true;

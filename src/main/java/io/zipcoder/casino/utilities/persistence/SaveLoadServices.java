@@ -43,7 +43,11 @@ public class SaveLoadServices {
         try {
             Database.reloadAllUsers(objectMapper.readValue(new File(fullFile), new TypeReference<ArrayList<Player>>(){}));
             Logger.getGlobal().info("Loaded JSON player data successfully. DatabaseUsers.size()=" + Database.getAllPlayers().size());
-        } catch (JsonParseException e) {} catch (JsonMappingException e) {} catch (IOException e) {
+        } catch (JsonParseException e) {
+            Logger.getGlobal().info("JsonParseException when attempting to load JSON player data!");
+        } catch (JsonMappingException e) {
+            Logger.getGlobal().info("JsonMappingException when attempting to load JSON player data!");
+        } catch (IOException e) {
             Logger.getGlobal().info("IOException when attempting to load JSON player data!");
         }
     }
