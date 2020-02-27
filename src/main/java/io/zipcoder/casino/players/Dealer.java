@@ -28,6 +28,7 @@ public class Dealer extends CardPlayer {
     }
 
     public boolean isHitting() {
+
         if(getHandValue() <= 16){
             return true;
         }
@@ -35,9 +36,18 @@ public class Dealer extends CardPlayer {
     }
 
     public int getHandValue() {
+        int newCardValue =0;
         int sum =0;
         for (int i = 0; i <this.getHand().size() ; i++) {
-            sum += this.getHand().get(i).getValueAsInt();
+            if (this.getHand().get(i).getValueAsInt() > 10){
+                newCardValue = 10;
+            }
+           else if (this.getHand().get(i).getValueAsInt() == 1){
+               newCardValue = 11;
+            } else{
+               newCardValue  = this.getHand().get(i).getValueAsInt();
+            }
+               sum += newCardValue;
         }
         return sum;
     }

@@ -24,7 +24,7 @@ public class DealerTest {
     @Test
     public void isHittingTest(){
         Dealer newDealer = new Dealer();
-        PlayingCard card = new PlayingCard(10, PlayingCard.Suit.HEARTS);
+        PlayingCard card = new PlayingCard(PlayingCard.Rank.KING, PlayingCard.Suit.HEARTS);
         PlayingCard card2 = new PlayingCard(5, PlayingCard.Suit.HEARTS);
         newDealer.addCardToHand(card);
         newDealer.addCardToHand(card2);
