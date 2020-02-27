@@ -62,8 +62,7 @@ public class BlackJack extends Game implements CardGame {
         Boolean gameOver = false;
 
         // game logic
-        ConsoleServices.print("Please place your bet\n");
-        String betInput = ConsoleServices.getStringInput("Place chip: ");
+        String betInput = ConsoleServices.getStringInput("Please place your bet\n");
         String betAmount = "";
         betAmount = (betInput.toLowerCase());
         if(betAmount.equals("black")){
@@ -91,39 +90,49 @@ public class BlackJack extends Game implements CardGame {
             if (this.playerTurn)
             {
                 ConsoleServices.print("Cards in hand: " + this.currentPlayer.printHand());
-                System.out.println("Your hand value is: "+ this.currentPlayer.getValue());
-                System.out.println("The dealers' hand value is: "+ this.opponent.getHandValue());
+                ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
+                ConsoleServices.print("The dealers' hand value is: "+ this.opponent.getHandValue());
                 String input = ConsoleServices.getStringInput("Would you like to Hit or Stay? ");
                 String hitOrStay = "";
                 hitOrStay = (input.toLowerCase());
                 if (hitOrStay.equals("hit")) {
-                    this.gameDeck.draw(1);
+                    this.currentPlayer.getHand().addAll(this.gameDeck.draw(1));
+                    ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
+                    String input2 = ConsoleServices.getStringInput("Would you like to Hit or Stay? ");
+                    hitOrStay = (input2.toLowerCase());
+                    if (hitOrStay.equals("hit")){
+                        this.currentPlayer.getHand().addAll(this.gameDeck.draw(1));
+                        ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
+
+                    }
+
                 }
-                if (hitOrStay.equals("Stay")){ ConsoleServices.print("It's the dealers turn now."); }
-                this.playerTurn = false;
+                if (hitOrStay.equals("Stay")){
+                    ConsoleServices.print(("It's the dealers turn now.")); }
+
             }
 
-            // Opponent turn
             else
             {
                 if (this.opponent.isHitting()){
-                    this.opponent.hit(card);
-                    System.out.println("Dealers' hand value is: "+ this.opponent.getHandValue());
+                    this.opponent.getHand().addAll(this.gameDeck.draw(1));
+                    ConsoleServices.print("Dealers' hand value is: "+ this.opponent.getHandValue());
                 }
-                else {System.out.println("Lets see who won!");}
                 this.findWinner = true;
             }
 
-            // PLACEHOLDER TO MAKE PLAYABLE - REMOVE
+
             if (this.findWinner) {
-                if(this.currentPlayer.getValue() < 22 && this.currentPlayer.getValue() > this.opponent.getHandValue()) {
+                ConsoleServices.print("Lets see who won!\n Your hand: "+ this.currentPlayer.getValue()+"\n Dealers hand: "+ this.opponent.getHandValue());
+                if(this.currentPlayer.getValue() < 22 && this.currentPlayer.getValue() > this.opponent.getHandValue() || this.opponent.getHandValue() > 21) {
                     playerWon = true;
-                    gameOver = true;
+                    System.out.println("You've won! "+ bets.get(0).getDollarVal()+ "$");
+
                 }
                else playerWon = false;
-                System.out.println("Sorry you lost!");
-                gameOver = true;
+                ConsoleServices.print("Sorry you lost!");
             }
+            gameOver = true;
         }
 
 
