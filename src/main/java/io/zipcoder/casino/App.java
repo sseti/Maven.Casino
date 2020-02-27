@@ -13,13 +13,14 @@ import io.zipcoder.casino.utilities.persistence.StatTracker;
 public class App {
 
     private static Casino casino;
+    private static boolean isLoggedIn;
 
     public static void main(String[] args) {
         App application = new App();
         application.initialize();
 
         // Example print
-        //ConsoleServices.print("My cool message");
+        // ConsoleServices.print("My cool message");
 
     }
 
@@ -41,13 +42,6 @@ public class App {
     }
 
 
-    // If you are getting weird null pointers (or something like that) in tests, try running this func before any other code
-    public static void TestingInit() {
-        casino = new Casino();
-        StatTracker st = new StatTracker();
-        SaveLoadServices.loadJSONData(SaveLoadServices.SAVE_FILE_NAME);
-    }
-
     public static void updatePlayer(Game currentGame) {
         casino.updateCurrentPlayer(currentGame);
     }
@@ -58,10 +52,23 @@ public class App {
 
     public static void logPlayerIn(Player p) {
         casino.setCurrentPlayer(p);
+        setLoginStatus();
     }
 
     public static Player getCurrentPlayer() {
         return casino.getCurrentPlayer();
+    }
+
+    public static boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public static void setLoginStatus() {
+        if (casino.getCurrentPlayer() != null) {
+            isLoggedIn = true;
+        } else {
+            isLoggedIn = false;
+        }
     }
 
 }

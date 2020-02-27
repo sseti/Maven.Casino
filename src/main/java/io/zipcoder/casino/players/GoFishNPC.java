@@ -17,7 +17,6 @@ public class GoFishNPC extends CardPlayer {
 
     public GoFishNPC() {
         this(MenuStrings.randomIdentifier(), 1, new ArrayList<>());
-        this.welcomeMessages.add("Hello, I am " + this.name + ". Good luck!");
     }
 
     public GoFishNPC(String name, int drawAmt, ArrayList<String> welcomeMessages) {
@@ -34,6 +33,12 @@ public class GoFishNPC extends CardPlayer {
 
     public PlayingCard generateCardToAsk() {
         return (this.getHand().size() > 0) ? this.getHand().get(this.rng.nextInt(this.getHand().size())) : null;
+    }
+
+    private void updateName() {
+        if (this.welcomeMessages.size() < 1) {
+            this.welcomeMessages.add("Hello, I am " + this.name + ". Good luck!");
+        }
     }
 
     public boolean hasCard(PlayingCard card) {

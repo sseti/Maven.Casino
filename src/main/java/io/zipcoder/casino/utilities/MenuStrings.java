@@ -13,6 +13,8 @@ public class MenuStrings {
     public static String commands;
     public static String goodbye;
     public static String register;
+    public static String badLogin;
+    public static String gamesMenu;
     public static String loginMenuCommands;
     public static String currencyMenuCommands;
     public static String gamesMenuCommands;
@@ -51,6 +53,26 @@ public class MenuStrings {
                 "***      Enter a new [USERNAME] [PASSWORD]     ***\n" +
                 "**************************************************\n";
 
+        badLogin = "" +
+                "**************************************************\n" +
+                "***                Bad Login!                  ***\n" +
+                "***                                            ***\n" +
+                "***         Enter [USERNAME] [PASSWORD]        ***\n" +
+                "**************************************************\n";
+
+        gamesMenu = "" +
+                "*************************************************************************\n" +
+                "***                      ZipCasino - Games Menu                       ***\n" +
+                "*************************************************************************\n" +
+                "***    1 |  Play BlackJack                                            ***\n" +
+                "***    2 |  Play Go Fish                                              ***\n" +
+                "***    3 |  Play Loopy Dice                                           ***\n" +
+                "***    4 |  Play Craps                                                ***\n" +
+                "***    0 |  Return to the main menu                                   ***\n" +
+                "*************************************************************************\n" +
+                "***                          Enter a command                          ***\n" +
+                "*************************************************************************\n" ;
+
 
         commands = "";
 
@@ -67,9 +89,9 @@ public class MenuStrings {
             case STANDARD:
                 return standard;
             case BAD_LOGIN:
-                return "";
+                return badLogin;
             case GAMES_MENU:
-                return "";
+                return gamesMenu;
             case STATS_MENU:
                 return "";
             case CURRENCY_MENU:
