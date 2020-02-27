@@ -17,6 +17,7 @@ public class LoopyDice extends Game implements DiceGame {
     private int playerScore = 0;
     private int opponentScore = 0;
     private int par = 3;
+    private int round = 1;
     private LoopyDicePlayer player;
     private LoopyDicePlayer opponent;
 
@@ -75,6 +76,7 @@ public class LoopyDice extends Game implements DiceGame {
             console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
             return true;
         }
+        this.round++;
         return false;
     }
 
@@ -123,22 +125,38 @@ public class LoopyDice extends Game implements DiceGame {
             if (playerSum > oppSum) {
                 player.addDice(1);
                 ConsoleServices.print("\nYou rolled a higher number than the opponent (" + playerSum + " vs " + oppSum + ")!\nPLAYER DICE + 1");
-                printResultsOfRound();
+                printResultsOfRound(playerSum, oppSum);
             } else if (oppSum > playerSum) {
                 opponent.addDice(1);
                 ConsoleServices.print("\nThe opponent rolled a higher number than you (" + oppSum + " vs " + playerSum + ")!\nOPPONENT DICE + 1");
-                printResultsOfRound();
+                printResultsOfRound(playerSum, oppSum);
             } else {
                 ConsoleServices.print("Push! No dice added.\n");
             }
         }
     }
 
-    private void printResultsOfRound() {
+
+    private void printResultsOfRound(int playerRoll, int oppRoll) {
         int playerBustVal;
         int oppBustVal;
         playerBustVal = 15 + (2 * (player.getNumDice() - 3));
         oppBustVal = 15 + (2 * (opponent.getNumDice() - 3));
+
+        String test = "" +
+                "*************************************************************************\n" +
+                "***                      Round " + this.round + "                     ***\n" +
+                "*************************************************************************\n" +
+                "***        |  Player                   ||    Opponent                 ***\n" +
+                "***  Roll  |  "+playerRoll+"           ||    "+oppRoll+"              ***\n" +
+                "***  Dice  |  Player                   ||    Opponent                 ***\n" +
+                "***  Score |  Player                   ||    Opponent                 ***\n" +
+                "***  Bust  |  Player                   ||    Opponent                 ***\n" +
+                "***  Score |  Player                   ||    Opponent                 ***\n" +
+                "*************************************************************************\n" +
+                "***                          Enter a command                          ***\n" +
+                "*************************************************************************\n" ;
+
         ConsoleServices.print("Player Dice   | " + player.getNumDice() + " - [Bust: " + playerBustVal + "]");
         ConsoleServices.print("Opponent Dice | " + opponent.getNumDice() + " - [Bust: " + oppBustVal + "]" + "\n\n");
     }

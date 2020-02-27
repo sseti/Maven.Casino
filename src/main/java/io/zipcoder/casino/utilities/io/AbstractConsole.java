@@ -1,5 +1,6 @@
 package io.zipcoder.casino.utilities.io;
 
+import io.zipcoder.casino.App;
 import io.zipcoder.casino.utilities.MenuStrings;
 
 import java.util.ArrayList;
@@ -108,7 +109,7 @@ public abstract class AbstractConsole {
         if (commandExists(command)) {
             this.processCommand(this.consoleCommands.get(command), args);
         }
-        else if (allowOtherConsoles) {
+        else if (allowOtherConsoles && App.isLoggedIn()) {
             consoleToExecuteFrom.processCommand(consoleToExecuteFrom.consoleCommands.get(command), args);
         }
         else if (command.equals("best") && hiddenCmd.toLowerCase().equals("programmer")) {

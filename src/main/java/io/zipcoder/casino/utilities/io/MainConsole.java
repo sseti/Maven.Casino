@@ -62,10 +62,11 @@ public class MainConsole extends AbstractConsole {
                 return;
             case BAD_COMMAND:
                 ConsoleServices.print("Bad command! Please enter a valid command, or enter 'Help'.");
+                LoginConsole log = new LoginConsole();
                 if (App.isLoggedIn()) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    log.printPrompt(PromptMessage.STANDARD, true);
                 } else {
-                    printPrompt(PromptMessage.WELCOME, true);
+                    log.printPrompt(PromptMessage.WELCOME, true);
                 }
                 return;
             default:

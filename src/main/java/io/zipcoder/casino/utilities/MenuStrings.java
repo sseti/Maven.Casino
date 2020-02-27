@@ -73,7 +73,6 @@ public class MenuStrings {
                 "***                          Enter a command                          ***\n" +
                 "*************************************************************************\n" ;
 
-
         commands = "";
 
         goodbye = "";
