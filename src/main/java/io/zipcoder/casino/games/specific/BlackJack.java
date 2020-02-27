@@ -98,28 +98,37 @@ public class BlackJack extends Game implements CardGame {
                 if (hitOrStay.equals("hit")) {
                     this.currentPlayer.getHand().addAll(this.gameDeck.draw(1));
                     ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
+                    if(this.currentPlayer.getValue() > 21){
+                        playerWon = false;
+                        ConsoleServices.print("Sorry you lost!");
+                        break;
+                    }
                     String input2 = ConsoleServices.getStringInput("Would you like to Hit or Stay? ");
                     hitOrStay = (input2.toLowerCase());
                     if (hitOrStay.equals("hit")){
                         this.currentPlayer.getHand().addAll(this.gameDeck.draw(1));
                         ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
-
+                        if(this.currentPlayer.getValue() > 21){
+                            playerWon = false;
+                            ConsoleServices.print("Sorry you lost!");
+                            break;
+                        }
                     }
-
                 }
                 if (hitOrStay.equals("Stay")){
-                    ConsoleServices.print(("It's the dealers turn now.")); }
+                    ConsoleServices.print(("It's the dealers turn now.")); this.playerTurn = false;}
+
 
             }
 
-            else
+                if(this.playerTurn = false){
             {
                 if (this.opponent.isHitting()){
                     this.opponent.getHand().addAll(this.gameDeck.draw(1));
                     ConsoleServices.print("Dealers' hand value is: "+ this.opponent.getHandValue());
                 }
                 this.findWinner = true;
-            }
+            }}
 
 
             if (this.findWinner) {
