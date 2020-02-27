@@ -3,8 +3,10 @@ package io.zipcoder.casino.players;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.utilities.MenuStrings;
 
+import java.util.ArrayList;
 
-public class Dealer {
+
+public class Dealer extends CardPlayer {
 
     private int handValue = 0;
     private PlayingCard unknownValue;
@@ -15,19 +17,29 @@ public class Dealer {
     }
 
     public Dealer(String name) {
+        super(name);
         this.name = name;
+
     }
 
-    public int hit() {
-        return 0;
+    public void hit(PlayingCard card){
+
+        addCardToHand(card);
     }
 
     public boolean isHitting() {
-        return false;
+        if(getHandValue() <= 16){
+            return true;
+        }
+            return false;
     }
 
     public int getHandValue() {
-        return handValue;
+        int sum =0;
+        for (int i = 0; i <this.getHand().size() ; i++) {
+            sum += this.getHand().get(i).getValueAsInt();
+        }
+        return sum;
     }
 
     public PlayingCard getUnknownValue() {
