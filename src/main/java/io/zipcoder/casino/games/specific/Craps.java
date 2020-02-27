@@ -71,7 +71,7 @@ public class Craps extends Game implements DiceGame {
         }
     }
 
-    private boolean crapsLogic() {
+    public boolean crapsLogic() {
         runRound();
         if (gameOver() && playerIsWinner()) {
             ConsoleServices.print("You won!");

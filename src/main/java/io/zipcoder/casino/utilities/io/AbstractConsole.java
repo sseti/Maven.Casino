@@ -130,11 +130,13 @@ public abstract class AbstractConsole {
     }
 
     private static boolean isValidCommandInAnyConsole(String cmd) {
+        MainConsole console = new MainConsole();
         CurrencyConsole currencyConsole = new CurrencyConsole();
         GamesConsole gamesConsole = new GamesConsole();
         LoginConsole loginConsole = new LoginConsole();
         StatsConsole statsConsole = new StatsConsole();
-        if (currencyConsole.commandExists(cmd)) { return true; }
+        if (console.commandExists(cmd)) { return true; }
+        else if (currencyConsole.commandExists(cmd)) { return true; }
         else if (gamesConsole.commandExists(cmd)) { return true; }
         else if (loginConsole.commandExists(cmd)) { return true; }
         else if (statsConsole.commandExists(cmd)) { return true; }
@@ -142,11 +144,13 @@ public abstract class AbstractConsole {
     }
 
     private static AbstractConsole whichConsoleHasThisCommand(String cmd) {
+        MainConsole console = new MainConsole();
         CurrencyConsole currencyConsole = new CurrencyConsole();
         GamesConsole gamesConsole = new GamesConsole();
         LoginConsole loginConsole = new LoginConsole();
         StatsConsole statsConsole = new StatsConsole();
-        if (currencyConsole.commandExists(cmd)) { return currencyConsole; }
+        if (console.commandExists(cmd)) { return console; }
+        else if (currencyConsole.commandExists(cmd)) { return currencyConsole; }
         else if (gamesConsole.commandExists(cmd)) { return gamesConsole; }
         else if (loginConsole.commandExists(cmd)) { return loginConsole; }
         else if (statsConsole.commandExists(cmd)) { return statsConsole; }

@@ -16,9 +16,9 @@ public class GamesConsole extends AbstractConsole {
         consoleCommands.put("blackjack", Command.BLACKJACK);
         consoleCommands.put("craps", Command.CRAPS);
         consoleCommands.put("help", Command.HELP);
-        consoleCommands.put("1", Command.LOOPY_DICE);
+        consoleCommands.put("1", Command.BLACKJACK);
         consoleCommands.put("2", Command.GOFISH);
-        consoleCommands.put("3", Command.BLACKJACK);
+        consoleCommands.put("3", Command.LOOPY_DICE);
         consoleCommands.put("4", Command.CRAPS);
     }
 

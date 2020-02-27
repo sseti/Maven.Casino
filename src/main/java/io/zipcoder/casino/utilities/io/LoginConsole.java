@@ -22,7 +22,8 @@ public class LoginConsole extends AbstractConsole {
 
     @Override
     public void runOnInvalidCommand(ArrayList<String> originalArgs) {
-        processCommand(Command.BAD_COMMAND, originalArgs);
+        MainConsole console = new MainConsole();
+        console.processCommand(Command.BAD_COMMAND, originalArgs);
     }
 
     @Override
