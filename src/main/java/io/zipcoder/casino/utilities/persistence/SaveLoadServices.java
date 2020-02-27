@@ -45,10 +45,13 @@ public class SaveLoadServices {
             Logger.getGlobal().info("Loaded JSON player data successfully. DatabaseUsers.size()=" + Database.getAllPlayers().size());
         } catch (JsonParseException e) {
             Logger.getGlobal().info("JsonParseException when attempting to load JSON player data!");
+            //e.printStackTrace();
         } catch (JsonMappingException e) {
             Logger.getGlobal().info("JsonMappingException when attempting to load JSON player data!");
+            //e.printStackTrace();
         } catch (IOException e) {
             Logger.getGlobal().info("IOException when attempting to load JSON player data!");
+            //e.printStackTrace();
         }
     }
 

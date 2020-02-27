@@ -1,5 +1,7 @@
 package io.zipcoder.casino.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.zipcoder.casino.players.Player;
 
 import java.util.ArrayList;
@@ -18,6 +20,15 @@ public class Wallet {
 
     public Wallet(int dollars) {
         this.dollars = dollars;
+        this.chips = new HashMap<>();
+    }
+
+    @JsonCreator
+    public Wallet(@JsonProperty("dollars") int dollars, @JsonProperty("chips") Map<Chip, Integer> chips, @JsonProperty("owner") Player owner) {
+        this.dollars = dollars;
+        this.chips = new HashMap<>();
+        this.chips.putAll(chips);
+        this.owner = owner;
     }
 
     public boolean addDollar(int amt) {
@@ -68,4 +79,15 @@ public class Wallet {
         return owner;
     }
 
+    public void setDollars(int dollars) {
+        this.dollars = dollars;
+    }
+
+    public void setChips(Map<Chip, Integer> chips) {
+        this.chips = chips;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
 }

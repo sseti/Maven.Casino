@@ -12,6 +12,10 @@ public class Player {
     private Wallet wallet;
     private StatsModel stats;
 
+    public Player() {
+
+    }
+
     // For tests
     public Player(String name) {
         this(name, "", new Wallet());
