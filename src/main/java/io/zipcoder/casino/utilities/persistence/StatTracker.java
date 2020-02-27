@@ -4,7 +4,7 @@ import io.zipcoder.casino.games.Game;
 import io.zipcoder.casino.games.specific.BlackJack;
 import io.zipcoder.casino.games.specific.Craps;
 import io.zipcoder.casino.games.specific.GoFish;
-import io.zipcoder.casino.games.specific.LoopDice;
+import io.zipcoder.casino.games.specific.LoopyDice;
 import io.zipcoder.casino.models.Chip;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class StatTracker {
                 crapsWins++;
             } else if (game instanceof GoFish) {
                 goFishWins++;
-            } else if (game instanceof LoopDice) {
+            } else if (game instanceof LoopyDice) {
                 loopyWins++;
             }
         } else {

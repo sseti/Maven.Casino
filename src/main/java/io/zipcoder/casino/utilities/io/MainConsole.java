@@ -1,11 +1,22 @@
 package io.zipcoder.casino.utilities.io;
 
+import io.zipcoder.casino.App;
 import io.zipcoder.casino.games.Game;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MainConsole extends AbstractConsole {
 
+
+    /*private static Map<String, Game> gameMap;
+
+    static {
+        gameNames.add("blackjack");
+        gameNames.add("gofish");
+        gameNames.add("loopy");
+
+    }*/
 
     @Override
     protected void initializeCommands() {
@@ -27,25 +38,18 @@ public class MainConsole extends AbstractConsole {
         switch (cmd) {
 
             case GAMES:
-                boolean isPlaying = false;
-                int gameChoice = -1;
-
+                boolean playing = false;
                 for (String arg : args) {
                     try {
                         Integer val = Integer.parseInt(arg);
                         if (val > 0 && val < 5) {
-                            gameChoice = val;
+                            App.getCasino().startGame(val);
+                            playing = true;
                         }
-                    } catch(NumberFormatException ex) {
-
-                    }
+                    } catch(NumberFormatException ex) {}
                 }
-
-                if (gameChoice != -1) {
-                    isPlaying = true;
-                    // printPrompt(PromptMessage.___, true);
-                } else {
-                    printPrompt(PromptMessage.STANDARD, true);
+                if (!playing) {
+                    printPrompt(PromptMessage.GAMES_MENU, true);
                 }
                 return;
             case CURRENCY:
@@ -55,6 +59,10 @@ public class MainConsole extends AbstractConsole {
             case HELP:
                 return;
             case LOGOUT:
+                return;
+            case BAD_COMMAND:
+                ConsoleServices.print("Bad command! Please enter a valid command, or enter 'Help'.");
+                printPrompt(PromptMessage.STANDARD, true);
                 return;
             default:
                 return;

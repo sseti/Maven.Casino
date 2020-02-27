@@ -8,6 +8,10 @@ public class Chip {
     private int dollarVal;
     private ChipValue val;
 
+
+    // Needed for proper JSON deserialization
+    public Chip(String test) {}
+
     public Chip(ChipValue val) {
         this.val = val;
     }
@@ -84,4 +88,16 @@ public class Chip {
         }
     }
 
+    public void setDollarVal(int dollarVal) {
+        this.dollarVal = dollarVal;
+    }
+
+    public void setVal(ChipValue val) {
+        this.val = val;
+    }
+
+    @Override
+    public String toString() {
+        return this.val.toString();
+    }
 }

@@ -12,7 +12,7 @@ public class DeckTest {
         //given
         Deck newDeck = new Deck();
         //ArrayList<PlayingCard> cards = new ArrayList<>();
-        newDeck.generateDeck(Deck.DECKSIZE);
+        newDeck.generateDeck();
 
         // when
         int expected = 52;

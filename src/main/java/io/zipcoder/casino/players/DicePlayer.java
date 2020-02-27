@@ -31,6 +31,14 @@ public class DicePlayer extends Player {
         return sum;
     }
 
+    public Integer getNumDice() {
+        return this.dice.size();
+    }
+
+    public void emptyDice() {
+        this.dice.clear();
+    }
+
     public void addDice(int amt) {
         for (int i = 0; i < amt; i++) {
             this.dice.add(new Dice());

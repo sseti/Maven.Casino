@@ -3,7 +3,6 @@ package io.zipcoder.casino.utilities.io;
 import io.zipcoder.casino.App;
 import io.zipcoder.casino.models.Wallet;
 import io.zipcoder.casino.players.Player;
-import io.zipcoder.casino.utilities.builders.PlayerBuilder;
 import io.zipcoder.casino.utilities.persistence.Database;
 import io.zipcoder.casino.utilities.persistence.SaveLoadServices;
 
@@ -18,6 +17,7 @@ public class LoginConsole extends AbstractConsole {
         consoleCommands.put("help", Command.HELP);
         consoleCommands.put("register", Command.REGISTER);
         consoleCommands.put("logout", Command.LOGOUT);
+        consoleCommands.put("login", Command.LOGIN);
     }
 
     @Override
@@ -38,20 +38,12 @@ public class LoginConsole extends AbstractConsole {
                     printPrompt(PromptMessage.WELCOME, true);
                 }
                 return;
-            case BAD_COMMAND:
-                ConsoleServices.print("Bad command! Please enter a valid command, or enter 'Help'.");
-                if (this.loggedIn) {
-                    printPrompt(PromptMessage.STANDARD, true);
-                } else {
-                    printPrompt(PromptMessage.WELCOME, true);
-                }
-                return;
             case LOGOUT:
                 if (loggedIn) {
                     SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
                 }
                 return;
-            default:
+            case LOGIN:
                 if (attemptLogin(args)) {
                     printPrompt(PromptMessage.STANDARD, true);
                 } else {
@@ -72,18 +64,16 @@ public class LoginConsole extends AbstractConsole {
     }
 
     public Boolean attemptRegister(ArrayList<String> args) {
-        String user = getUserFromInput(args);
-        String pass = getPasswordFromInput(args);
-        if (!Database.isUser(user)) {
-            Player newUser = new PlayerBuilder()
-                    .setName(user)
-                    .setPassword(pass)
-                    .setWallet(new Wallet())
-                    .createPlayer();
-            Database.addUser(newUser);
-            App.logPlayerIn(Database.getPlayer(user));
-            loggedIn = true;
-            return true;
+        if (args.size() > 1) {
+            String user = args.get(0);
+            String pass = args.get(1);
+            if (!Database.isUser(user)) {
+                Player newUser = new Player(user, pass, new Wallet());
+                Database.addUser(newUser);
+                App.logPlayerIn(Database.getPlayer(user));
+                loggedIn = true;
+                return true;
+            }
         }
         return false;
     }

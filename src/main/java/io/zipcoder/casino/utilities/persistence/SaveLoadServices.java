@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.zipcoder.casino.App;
 import io.zipcoder.casino.models.Chip;
+import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.players.Player;
 
 import javax.xml.crypto.Data;
@@ -24,16 +25,15 @@ public class SaveLoadServices {
         Player toProcessStatsFor = App.getCurrentPlayer();
         toProcessStatsFor = Database.processStats(toProcessStatsFor);
         Database.addUser(toProcessStatsFor);
+
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         String playerSaveFile = "/Users/Casino/" + fileName + ".json";
-        if (!fileName.equals("")) {
-            try {
-                writer.writeValue(new File(playerSaveFile), Database.getAllPlayers());
-                Logger.getGlobal().info("Saved JSON data successfully!");
-            } catch (IOException e) {
-                Logger.getGlobal().info("IOException when attempting to save JSON data!");
-            }
+        try {
+            writer.writeValue(new File(playerSaveFile), Database.getAllPlayers());
+            Logger.getGlobal().info("Saved JSON data successfully!");
+        } catch (IOException e) {
+            Logger.getGlobal().info("IOException when attemtping to save JSON data!");
         }
     }
 
@@ -42,9 +42,16 @@ public class SaveLoadServices {
         String fullFile = "/Users/Casino/" + fileName + ".json";
         try {
             Database.reloadAllUsers(objectMapper.readValue(new File(fullFile), new TypeReference<ArrayList<Player>>(){}));
-            Logger.getGlobal().info("Loaded JSON player data successfully.");
-        } catch (JsonParseException e) {} catch (JsonMappingException e) {} catch (IOException e) {
+            Logger.getGlobal().info("Loaded JSON player data successfully. DatabaseUsers.size()=" + Database.getAllPlayers().size());
+        } catch (JsonParseException e) {
+            Logger.getGlobal().info("JsonParseException when attempting to load JSON player data!");
+            //e.printStackTrace();
+        } catch (JsonMappingException e) {
+            Logger.getGlobal().info("JsonMappingException when attempting to load JSON player data!");
+            //e.printStackTrace();
+        } catch (IOException e) {
             Logger.getGlobal().info("IOException when attempting to load JSON player data!");
+            //e.printStackTrace();
         }
     }
 
