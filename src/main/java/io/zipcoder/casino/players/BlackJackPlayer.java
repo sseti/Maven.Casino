@@ -26,9 +26,6 @@ public class BlackJackPlayer extends CardPlayer {
         super(player.getName(), player.getPassword(), player.getWallet());
     }
 
-    public int hit(Player p) {
-        return 0;
-    }
 
     public void doubleDown() {
 

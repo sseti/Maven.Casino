@@ -3,12 +3,15 @@ package io.zipcoder.casino.players;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.utilities.MenuStrings;
 
+import java.util.ArrayList;
 
-public class Dealer {
+
+public class Dealer{
 
     private int handValue = 0;
     private PlayingCard unknownValue;
     private String name;
+    ArrayList<PlayingCard> hand;
 
     public Dealer() {
         this(MenuStrings.randomIdentifier());
@@ -18,7 +21,7 @@ public class Dealer {
         this.name = name;
     }
 
-    public int hit() {
+    public int hit(int amt) {
         return 0;
     }
 
