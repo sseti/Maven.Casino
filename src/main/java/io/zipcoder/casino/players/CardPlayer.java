@@ -37,6 +37,7 @@ public class CardPlayer extends Player {
     public void removeCard(PlayingCard card) {
         this.hand.remove(card);
     }
+
     public String printHand() {
         String toRet = "";
         Collections.sort(this.getHand());

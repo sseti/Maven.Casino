@@ -15,7 +15,7 @@ public class BlackJackTest {
     public void newDealTest(){
         BlackJackPlayer player = new BlackJackPlayer("Zeth");
         Chip chip = new Chip(Chip.ChipValue.BLACK);
-        BlackJack blackJack = new BlackJack(2, chip);
+        BlackJack blackJack = new BlackJack();
         blackJack.newDeal();
 
 
