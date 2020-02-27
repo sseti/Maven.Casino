@@ -57,6 +57,7 @@ public class GoFish extends Game implements CardGame {
         return (playerToPoll.getHand().size() > 0) ? playerToPoll.getHand().contains(card) : false;
     }
 
+
     public PlayingCard getCardFromPlayer(PlayingCard card, CardPlayer playerToPullFrom) {
         for (PlayingCard p : playerToPullFrom.getHand()) {
             if (p.equals(card)) {

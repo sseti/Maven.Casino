@@ -11,6 +11,10 @@ public class GoFishPlayer extends CardPlayer {
 
     private int gameDrawAmt;
 
+    public GoFishPlayer(String name){
+        super(name);
+    }
+
     public GoFishPlayer(Player player, int gameDrawAmt) {
         super(player.getName(), player.getPassword(), player.getWallet());
         this.gameDrawAmt = gameDrawAmt;
