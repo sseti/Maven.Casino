@@ -17,6 +17,7 @@ public class LoginConsole extends AbstractConsole {
         consoleCommands.put("help", Command.HELP);
         consoleCommands.put("register", Command.REGISTER);
         consoleCommands.put("logout", Command.LOGOUT);
+        consoleCommands.put("login", Command.LOGIN);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class LoginConsole extends AbstractConsole {
                     SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
                 }
                 return;
-            default:
+            case LOGIN:
                 if (attemptLogin(args)) {
                     printPrompt(PromptMessage.STANDARD, true);
                 } else {

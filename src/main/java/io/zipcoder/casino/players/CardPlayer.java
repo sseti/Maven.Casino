@@ -12,14 +12,17 @@ public class CardPlayer extends Player {
     // For tests
     public CardPlayer(String name) {
        super(name);
+       this.hand = new ArrayList<>();
     }
 
     public CardPlayer(String name, String password, Wallet wallet) {
         super(name, password, wallet);
+        this.hand = new ArrayList<>();
     }
 
     public CardPlayer(Player player) {
         super(player.getName(), player.getPassword(), player.getWallet());
+        this.hand = new ArrayList<>();
     }
 
     public ArrayList<PlayingCard> getHand() {

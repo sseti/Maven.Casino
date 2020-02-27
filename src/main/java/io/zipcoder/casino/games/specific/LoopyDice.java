@@ -10,6 +10,8 @@ import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.io.MainConsole;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
+import java.io.Console;
+
 public class LoopyDice extends Game implements DiceGame {
 
     private int playerScore = 0;
@@ -98,7 +100,11 @@ public class LoopyDice extends Game implements DiceGame {
                 player.addDice(3);
                 this.playerScore++;
                 int neededToLose = this.par - this.playerScore;
-                ConsoleServices.print("You busted with a roll of " + playerSum + "!\nYou have scored 1 point. Score " + neededToLose + " more points and you lose!");
+                if (neededToLose < 1) {
+                    ConsoleServices.print("\nYou busted with a roll of " + playerSum + "!!!\n");
+                } else {
+                    ConsoleServices.print("\nYou busted with a roll of " + playerSum + "!\nYou have scored 1 point. Score " + neededToLose + " more points and you lose!\n");
+                }
             }
 
             if (oppSum > oppBustVal) {
@@ -106,19 +112,35 @@ public class LoopyDice extends Game implements DiceGame {
                 opponent.addDice(3);
                 this.opponentScore++;
                 int neededToLose = this.par - this.opponentScore;
-                ConsoleServices.print("You busted with a roll of " + playerSum + "!\nYou have scored 1 point. Score " + neededToLose + " more points and you lose!");
+                if (neededToLose < 1) {
+                    ConsoleServices.print("\nOpponent busted with a roll of " + oppSum + "!!!\n");
+                } else {
+                    ConsoleServices.print("\nOpponent busted with a roll of " + oppSum + "!\nOpponent has scored 1 point. If they score " + neededToLose + " more points, you win!\n");
+                }
+
             }
         } else {
             if (playerSum > oppSum) {
                 player.addDice(1);
-                ConsoleServices.print("You rolled a higher number than the opponent (" + playerSum + ")!\nYou have gained 1 additional die.");
+                ConsoleServices.print("\nYou rolled a higher number than the opponent (" + playerSum + " vs " + oppSum + ")!\nPLAYER DICE + 1");
+                printResultsOfRound();
             } else if (oppSum > playerSum) {
                 opponent.addDice(1);
-                ConsoleServices.print("The opponent rolled a higher number than you (" + oppSum + ")!\nThey have gained 1 additional die.");
+                ConsoleServices.print("\nThe opponent rolled a higher number than you (" + oppSum + " vs " + playerSum + ")!\nOPPONENT DICE + 1");
+                printResultsOfRound();
             } else {
-                ConsoleServices.print("Both players rolled the same result! Tie! No dice added.");
+                ConsoleServices.print("Push! No dice added.\n");
             }
         }
+    }
+
+    private void printResultsOfRound() {
+        int playerBustVal;
+        int oppBustVal;
+        playerBustVal = 15 + (2 * (player.getNumDice() - 3));
+        oppBustVal = 15 + (2 * (opponent.getNumDice() - 3));
+        ConsoleServices.print("Player Dice   | " + player.getNumDice() + " - [Bust: " + playerBustVal + "]");
+        ConsoleServices.print("Opponent Dice | " + opponent.getNumDice() + " - [Bust: " + oppBustVal + "]" + "\n\n");
     }
 
 }

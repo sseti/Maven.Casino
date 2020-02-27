@@ -2,6 +2,10 @@ package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.utilities.io.AbstractConsole;
 
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class MenuStrings {
 
     public static String welcome;
@@ -75,6 +79,21 @@ public class MenuStrings {
         }
     }
 
-
+    public static String randomIdentifier() {
+        StringBuilder builder = new StringBuilder();
+        Random rand = new Random();
+        String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Set<String> identifiers = new HashSet<String>();
+        while(builder.toString().length() == 0) {
+            int length = rand.nextInt(5)+5;
+            for(int i = 0; i < length; i++) {
+                builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
+            }
+            if(identifiers.contains(builder.toString())) {
+                builder = new StringBuilder();
+            }
+        }
+        return builder.toString();
+    }
 
 }

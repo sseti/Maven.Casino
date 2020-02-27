@@ -1,6 +1,8 @@
 package io.zipcoder.casino;
 
 import io.zipcoder.casino.games.Game;
+import io.zipcoder.casino.games.specific.GoFish;
+import io.zipcoder.casino.games.specific.LoopyDice;
 import io.zipcoder.casino.players.Player;
 import io.zipcoder.casino.models.Casino;
 import io.zipcoder.casino.utilities.io.AbstractConsole;
@@ -27,8 +29,19 @@ public class App {
         SaveLoadServices.loadJSONData(SaveLoadServices.SAVE_FILE_NAME);
         LoginConsole login = new LoginConsole();
         login.printPrompt(AbstractConsole.PromptMessage.WELCOME, true);
+
+        /* Test games */
+        // Run LoopyDice
+            //LoopyDice game = new LoopyDice();
+            //game.runGame();
+
+        // Run Go Fish
+            //GoFish game = new GoFish();
+            //game.runGame();
     }
 
+
+    // If you are getting weird null pointers (or something like that) in tests, try running this func before any other code
     public static void TestingInit() {
         casino = new Casino();
         StatTracker st = new StatTracker();

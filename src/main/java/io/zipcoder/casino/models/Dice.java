@@ -4,8 +4,17 @@ import java.util.Random;
 
 public class Dice {
 
-    private int numFaces = 6;
-    private Random rgen = new Random();
+    private int numFaces;
+    private Random rgen;
+
+    public Dice() {
+        this(6);
+    }
+
+    public Dice(int numFaces) {
+        this.numFaces = numFaces;
+        this.rgen = new Random();
+    }
 
     public int toss() {
         return rgen.nextInt(numFaces) + 1;

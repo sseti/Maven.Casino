@@ -2,8 +2,10 @@ package io.zipcoder.casino.models;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class PlayingCard {
+public class PlayingCard implements Comparable<PlayingCard> {
 
     private Rank value;
     private Suit suit;
@@ -13,12 +15,44 @@ public class PlayingCard {
         this.suit = suit;
     }
 
+    public PlayingCard(int value, Suit suit) {
+        this.suit = suit;
+        for (Rank r : Rank.values()) {
+            if (r.getVal() == value) {
+                this.value = r;
+                break;
+            }
+        }
+    }
+
+    public PlayingCard(int value) {
+        this(value, Suit.DIAMONDS);
+    }
+
     public Rank getValue() {
         return value;
     }
 
+    public int getValueAsInt() {
+        return value.getVal();
+    }
+
     public Suit getSuit() {
         return suit;
+    }
+
+    @Override
+    public int compareTo(PlayingCard o) {
+        return (this.getValueAsInt() > o.getValueAsInt()) ? 1 : (o.getValueAsInt() > this.getValueAsInt()) ? -1 : 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof PlayingCard) {
+            return this.getValueAsInt() == ((PlayingCard) o).getValueAsInt();
+        } else {
+            return super.equals(o);
+        }
     }
 
     public enum Suit {
@@ -43,9 +77,16 @@ public class PlayingCard {
         QUEEN (12),
         KING (13);
 
-        Rank(int i) {}
-    }
+        private final int value;
 
+        Rank(int i) {
+            this.value = i;
+        }
+
+        public int getVal() {
+            return this.value;
+        }
+    }
 
     @Override
     public String toString() {

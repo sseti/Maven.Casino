@@ -26,7 +26,8 @@ public abstract class AbstractConsole {
         LOOPY_DICE,
         CRAPS,
         BAD_COMMAND,
-        REGISTER
+        REGISTER,
+        LOGIN
     }
 
     public enum PromptMessage {
