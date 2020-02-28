@@ -71,6 +71,7 @@ public class MenuStrings {
         int length = lengthCheck.length();
         int rank = 1;
         for (Player p : sortedList) {
+            Database.processStats(p);
             String nextString = "*** " + rank + ": " + p.getName() + " -- " + p.getStats().getOverallScore();
             while (nextString.length() < length - 4) {
                 nextString += " ";
@@ -208,7 +209,7 @@ public class MenuStrings {
                 "*************************************************************************\n" +
                 leaderboardPlayers +
                 "***-------------------------------------------------------------------***\n" +
-                "***    0 |  Return to the main  menu                                   ***\n" +
+                "***    0 |  Return to the main  menu                                  ***\n" +
                 "***    2 |  Individual stats                                          ***\n" +
                 "*************************************************************************\n" +
                 "***                          Enter a command                          ***\n" +
