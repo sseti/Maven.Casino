@@ -3,8 +3,4 @@ package io.zipcoder.casino.games;
 import javax.smartcardio.Card;
 import java.util.ArrayList;
 
-public interface CardGame {
-
-    ArrayList<Card> cards = null;
-
-}
+public interface CardGame {}
