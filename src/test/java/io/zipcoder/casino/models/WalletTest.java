@@ -68,13 +68,4 @@ public class WalletTest{
 
         Assert.assertEquals(expected, actual);
     }
-
-   /* @Test
-    public void subChipByDollar(){
-        Wallet wallet = new Wallet(100);
-        Map<Chip, Integer> chip = new HashMap<>();
-        Chip black = new Chip();
-        chip.put(black,6);
-        wallet.subChip(100);
-    }*/
 }

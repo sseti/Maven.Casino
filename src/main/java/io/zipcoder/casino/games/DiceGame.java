@@ -4,8 +4,4 @@ import io.zipcoder.casino.models.Dice;
 
 import java.util.ArrayList;
 
-public interface DiceGame {
-
-    ArrayList<Dice> dice = null;
-
-}
+public interface DiceGame {}

@@ -12,7 +12,7 @@ import io.zipcoder.casino.utilities.persistence.StatTracker;
 
 import java.io.Console;
 
-public class LoopyDice extends Game implements DiceGame {
+public class LoopyDice implements Game, DiceGame {
 
     private int playerScore = 0;
     private int opponentScore = 0;
@@ -55,7 +55,6 @@ public class LoopyDice extends Game implements DiceGame {
                 input = ConsoleServices.getStringInput("Bad command!\nEnter 'Roll' to calculate the next turn, or enter 'AutoRoll' to simulate the entire game.");
             }
         }
-
     }
 
     private boolean loopyDiceTurnLogic() {
@@ -65,15 +64,11 @@ public class LoopyDice extends Game implements DiceGame {
             playerWon = true;
             ConsoleServices.print("You won!");
             StatTracker.finishGame(this, playerWon);
-            MainConsole console = new MainConsole();
-            console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
             return true;
         } else if (gameOver()) {
             playerWon = false;
             ConsoleServices.print("You lost!");
             StatTracker.finishGame(this, playerWon);
-            MainConsole console = new MainConsole();
-            console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
             return true;
         }
         this.round++;
@@ -91,7 +86,8 @@ public class LoopyDice extends Game implements DiceGame {
         return false;
     }
 
-    public void runRound() {
+
+    public RoundResult runRound() {
         int playerSum = player.rollDice();
         int oppSum = opponent.rollDice();
         int playerBustVal = 15 + (2 * (player.getNumDice() - 3));
@@ -121,6 +117,15 @@ public class LoopyDice extends Game implements DiceGame {
                 }
 
             }
+
+            if (playerSum > playerBustVal && oppSum > oppBustVal) {
+                return RoundResult.BOTH_BUST;
+            } else if (playerSum > playerBustVal) {
+                return RoundResult.PLAYER_BUST;
+            } else {
+                return RoundResult.OPPONENT_BUST;
+            }
+
         } else {
             if (playerSum > oppSum) {
                 player.addDice(1);
@@ -132,6 +137,14 @@ public class LoopyDice extends Game implements DiceGame {
                 printResultsOfRound(playerSum, oppSum);
             } else {
                 ConsoleServices.print("Push! No dice added.\n");
+            }
+
+            if (playerSum > oppSum) {
+                return RoundResult.PLAYER_DICE_UP;
+            } else if (oppSum > playerSum) {
+                return RoundResult.OPPONENT_DICE_UP;
+            } else {
+                return RoundResult.PUSH;
             }
         }
     }
@@ -161,4 +174,32 @@ public class LoopyDice extends Game implements DiceGame {
         ConsoleServices.print("Opponent Dice | " + opponent.getNumDice() + " - [Bust: " + oppBustVal + "]" + "\n\n");
     }
 
+    public void setPlayerScore(int playerScore) {
+        this.playerScore = playerScore;
+    }
+
+    public void setOpponentScore(int opponentScore) {
+        this.opponentScore = opponentScore;
+    }
+
+    public void setPar(int par) {
+        this.par = par;
+    }
+
+    public void setPlayer(LoopyDicePlayer player) {
+        this.player = player;
+    }
+
+    public void setOpponent(LoopyDicePlayer opponent) {
+        this.opponent = opponent;
+    }
+
+    public enum RoundResult {
+        PUSH,
+        OPPONENT_DICE_UP,
+        PLAYER_DICE_UP,
+        PLAYER_BUST,
+        OPPONENT_BUST,
+        BOTH_BUST
+    }
 }

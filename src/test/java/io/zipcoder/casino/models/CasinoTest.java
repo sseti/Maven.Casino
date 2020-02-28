@@ -1,4 +1,5 @@
 package io.zipcoder.casino.models;
 
-public class CrapsTableTest {
+
+public class CasinoTest {
 }

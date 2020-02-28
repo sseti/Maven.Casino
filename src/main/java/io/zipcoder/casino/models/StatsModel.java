@@ -3,7 +3,7 @@ package io.zipcoder.casino.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class StatsModel {
+public class StatsModel implements Comparable<StatsModel> {
 
     private int blackJackWins = 0;
     private int goFishWins = 0;
@@ -15,6 +15,10 @@ public class StatsModel {
     private int gamblingWins = 0;
     private int totalLifetimeChipWinnings = 0;
     private int totalCashSpent = 0;
+
+    public StatsModel() {
+        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    }
 
     @JsonCreator
     public StatsModel(
@@ -118,5 +122,21 @@ public class StatsModel {
 
     public void setTotalCashSpent(int totalCashSpent) {
         this.totalCashSpent = totalCashSpent;
+    }
+
+    public int getOverallScore() {
+        int score = 0;
+        score += this.overallWins * 3;
+        score -= this.overallLosses;
+        score += this.gamblingWins;
+        score += this.highestChipValue / 3.0f;
+        return score;
+    }
+
+    @Override
+    public int compareTo(StatsModel o) {
+        int weightScoreThis = this.getOverallScore();
+        int weightScoreOther = o.getOverallScore();
+        return (weightScoreThis > weightScoreOther) ? 1 : (weightScoreThis < weightScoreOther) ? -1 : 0;
     }
 }
