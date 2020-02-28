@@ -15,7 +15,7 @@ import io.zipcoder.casino.utilities.persistence.StatTracker;
 import javax.smartcardio.Card;
 import java.util.ArrayList;
 
-public class BlackJack extends Game implements CardGame {
+public class BlackJack implements Game, CardGame {
 
     private ArrayList<Chip> bets = new ArrayList<>();
     private Deck gameDeck;
@@ -23,10 +23,8 @@ public class BlackJack extends Game implements CardGame {
     private Dealer opponent;
     private Chip placeBet;
     private int gameDrawAmt;
-    private PlayingCard card;
     private boolean playerTurn;
     private boolean findWinner;
-    Wallet wallet;
     private Chip white = new Chip(Chip.ChipValue.WHITE);
     private Chip blue = new Chip(Chip.ChipValue.BLUE);
     private Chip green = new Chip(Chip.ChipValue.GREEN);
@@ -44,11 +42,7 @@ public class BlackJack extends Game implements CardGame {
 
 
     public void newDeal() {
-
         bets.add(placeBet);
-
-
-
     }
 
     @Override

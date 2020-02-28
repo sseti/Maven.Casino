@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class GoFish extends Game implements CardGame {
+public class GoFish implements Game, CardGame {
 
     private GoFishPlayer currentPlayer;
     private GoFishNPC opponent;
@@ -196,6 +196,38 @@ public class GoFish extends Game implements CardGame {
             }
 
         }
+    }
+
+    public GoFishPlayer getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public GoFishNPC getOpponent() {
+        return opponent;
+    }
+
+    public Deck getGameDeck() {
+        return gameDeck;
+    }
+
+    public boolean isPlayerTurn() {
+        return playerTurn;
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    public int getOpponentScore() {
+        return opponentScore;
+    }
+
+    public int getGameDrawAmt() {
+        return gameDrawAmt;
+    }
+
+    public int getScoreToWin() {
+        return scoreToWin;
     }
 }
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class BlackJackTest {
 
-    @Test
+    /*@Test
     public void newDealTest(){
         BlackJackPlayer player = new BlackJackPlayer("Zeth");
         Chip chip = new Chip(Chip.ChipValue.BLACK);
@@ -20,6 +20,6 @@ public class BlackJackTest {
 
 
         Assert.assertEquals(player.getHand(), 2);
-    }
+    }*/
 
 }

@@ -51,4 +51,10 @@ public class DicePlayer extends Player {
         }
     }
 
+    public void setSeed(Long seed) {
+        for (Dice d : this.dice) {
+            d.setSeed(seed);
+        }
+    }
+
 }
