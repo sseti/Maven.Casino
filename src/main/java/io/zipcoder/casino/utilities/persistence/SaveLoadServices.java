@@ -23,7 +23,7 @@ public class SaveLoadServices {
 
     public static void saveJSON(String fileName) {
         Player toProcessStatsFor = App.getCurrentPlayer();
-        toProcessStatsFor = Database.processStats(toProcessStatsFor);
+        Database.processStats(toProcessStatsFor);
         Database.addUser(toProcessStatsFor);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class SaveLoadServices {
             writer.writeValue(new File(playerSaveFile), Database.getAllPlayers());
             Logger.getGlobal().info("Saved JSON data successfully!");
         } catch (IOException e) {
-            Logger.getGlobal().info("IOException when attemtping to save JSON data!");
+            Logger.getGlobal().info("IOException when attempting to save JSON data!");
         }
     }
 

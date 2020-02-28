@@ -21,32 +21,34 @@ public class LoginConsole extends AbstractConsole {
     }
 
     @Override
-    public void runOnInvalidCommand(ArrayList<String> originalArgs) {
-        MainConsole console = new MainConsole();
-        console.processCommand(Command.BAD_COMMAND, originalArgs);
-    }
-
-    @Override
     public void processCommand(Command cmd, ArrayList<String> args) {
         switch (cmd) {
             case HELP:
                 printHelpCommand(this);
+                if (loggedIn) {
+                    printPrompt(PromptMessage.STANDARD, true);
+                } else {
+                    printPrompt(PromptMessage.LOGIN, true);
+                }
                 return;
             case REGISTER:
                 if (attemptRegister(args)) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    MainConsole console = new MainConsole();
+                    console.printPrompt(PromptMessage.STANDARD, true);
                 } else {
-                    printPrompt(PromptMessage.WELCOME, true);
+                    printPrompt(PromptMessage.LOGIN, true);
                 }
                 return;
             case LOGOUT:
+                printPrompt(PromptMessage.GOODBYE, false);
                 if (loggedIn) {
                     SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
                 }
                 return;
             case LOGIN:
                 if (attemptLogin(args)) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    MainConsole console = new MainConsole();
+                    console.printPrompt(PromptMessage.STANDARD, true);
                 } else {
                     printPrompt(PromptMessage.BAD_LOGIN, true);
                 }

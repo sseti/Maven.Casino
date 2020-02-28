@@ -1,29 +1,29 @@
 package io.zipcoder.casino.players;
 
-import io.zipcoder.casino.models.PlayingCard;
+import io.zipcoder.casino.models.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class BlackJackPlayerTest {
-    @Test
-    public void hitTest() {
-        ArrayList<PlayingCard> hand = new ArrayList<>();
-        BlackJackPlayer Raheel = new BlackJackPlayer("Raheel");
-        Raheel.hit(Raheel);
-        Integer actual = hand.size();
-        Integer expected = 1;
-        Assert.assertEquals(expected, actual);
-    }
+    private static final Logger LOGGER = Logger.getLogger(BankTest.class.getName());
+
 
     @Test
     public void doubleDownTest() {
-        ArrayList<PlayingCard> hand = new ArrayList<>();
+        Wallet myWallet = new Wallet();
+        Chip chip = new Chip(Chip.ChipValue.BLACK);
+        myWallet.addChip(chip);
+        myWallet.addChip(chip);
+        PlayingCard card = new PlayingCard(5, PlayingCard.Suit.HEARTS);
         BlackJackPlayer Raheel = new BlackJackPlayer("Raheel");
-        Raheel.hit(Raheel);
-        Raheel.doubleDown();
-        //Table chips go up
+        Raheel.doubleDown(card, chip);
+        Integer expected = 1;
+        Integer actual = Raheel.getHand().size();
+        LOGGER.info(""+ actual);
+        Assert.assertEquals(expected,actual);
 
 
 

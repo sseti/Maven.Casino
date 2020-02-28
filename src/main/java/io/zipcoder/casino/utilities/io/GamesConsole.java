@@ -1,5 +1,6 @@
 package io.zipcoder.casino.utilities.io;
 
+import io.zipcoder.casino.App;
 import io.zipcoder.casino.games.specific.BlackJack;
 import io.zipcoder.casino.games.specific.Craps;
 import io.zipcoder.casino.games.specific.GoFish;
@@ -20,11 +21,7 @@ public class GamesConsole extends AbstractConsole {
         consoleCommands.put("2", Command.GOFISH);
         consoleCommands.put("3", Command.LOOPY_DICE);
         consoleCommands.put("4", Command.CRAPS);
-    }
-
-    @Override
-    public void runOnInvalidCommand(ArrayList<String> originalArgs) {
-        processCommand(Command.BAD_COMMAND, originalArgs);
+        consoleCommands.put("0", Command.MAIN_MENU);
     }
 
     @Override
@@ -33,25 +30,26 @@ public class GamesConsole extends AbstractConsole {
             case BLACKJACK:
                 BlackJack blackJackGame = new BlackJack();
                 blackJackGame.runGame();
-                printPrompt(PromptMessage.STANDARD, true);
+                printPrompt(PromptMessage.GAMES_MENU, true);
                 return;
             case GOFISH:
                 GoFish goFishGame = new GoFish();
                 goFishGame.runGame();
-                printPrompt(PromptMessage.STANDARD, true);
+                printPrompt(PromptMessage.GAMES_MENU, true);
                 return;
             case LOOPY_DICE:
                 LoopyDice loopyDiceGame = new LoopyDice(3);
                 loopyDiceGame.runGame();
-                printPrompt(PromptMessage.STANDARD, true);
+                printPrompt(PromptMessage.GAMES_MENU, true);
                 return;
             case CRAPS:
                 Craps crapsGame = new Craps();
                 crapsGame.runGame();
-                printPrompt(PromptMessage.STANDARD, true);
+                printPrompt(PromptMessage.GAMES_MENU, true);
                 return;
             default:
-                printPrompt(PromptMessage.STANDARD, true);
+                MainConsole console = new MainConsole();
+                console.printPrompt(PromptMessage.STANDARD, true);
                 return;
         }
 
