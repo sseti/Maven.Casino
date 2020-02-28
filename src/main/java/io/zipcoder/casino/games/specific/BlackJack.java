@@ -9,6 +9,7 @@ import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.models.Wallet;
 import io.zipcoder.casino.players.BlackJackPlayer;
 import io.zipcoder.casino.players.Dealer;
+import io.zipcoder.casino.utilities.MenuStrings;
 import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
@@ -54,6 +55,7 @@ public class BlackJack implements Game, CardGame {
         Boolean gameOver = false;
 
         // game logic
+        if (!MenuStrings.asciiCards.equals("")) { ConsoleServices.print(MenuStrings.asciiCards); }
         String betInput = ConsoleServices.getStringInput("Please place your bet\n");
         String betAmount = "";
         betAmount = (betInput.toLowerCase());

@@ -111,14 +111,7 @@ public class MenuStrings {
                 "    ███████╗╚██████╔╝╚██████╔╝██║        ██║   \n" +
                 "    ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝        ╚═╝  \n";
 
-        asciiCards = "         | _____\n" +
-                "         | /.\\ ||A ^  | _____\n" +
-                "         |(_._)|| / \\ ||A _  | _____\n" +
-                "         |  |  || \\ / || ( ) ||A_ _ |\n" +
-                "         |____V||  .  ||(_'_)||( v )|\n" +
-                "                |____V||  |  || \\ / |\n" +
-                "                       |____V||  .  |\n" +
-                "                              |____V|\n";
+        asciiCards = "";
 
         asciiDice = "              _______.\n" +
                 "   ______    | .   . |\\\n" +
@@ -435,12 +428,20 @@ public class MenuStrings {
         names.add("Ashy Larry");
         names.add("Rick James");
         names.add("Ric Flair");
-        names.add("Quavo");
         names.add("Post Malone");
         names.add("Danny Carey");
         names.add("Neil Peart");
         names.add("Jedi");
         names.add("Spock");
+        names.add("Beady Eyes McGee");
+        names.add("Yosemite Sam");
+        names.add("Peter Griffin");
+        names.add("Easter Bunny");
+        names.add("Uncle Bob");
+        names.add("Santa Claus");
+        names.add("Kitty Rotten");
+        names.add("Blue Man Group");
+        names.add("Nick Foles");
         return names.get(ThreadLocalRandom.current().nextInt(names.size()));
     }
 

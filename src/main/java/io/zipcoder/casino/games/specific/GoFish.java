@@ -8,6 +8,7 @@ import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.players.CardPlayer;
 import io.zipcoder.casino.players.GoFishNPC;
 import io.zipcoder.casino.players.GoFishPlayer;
+import io.zipcoder.casino.utilities.MenuStrings;
 import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
@@ -128,6 +129,7 @@ public class GoFish implements Game, CardGame {
         }
 
         updateScoreAndHands();
+        if (!MenuStrings.asciiCards.equals("")) { ConsoleServices.print(MenuStrings.asciiCards); }
         ConsoleServices.print("Go Fish!");
         ConsoleServices.print(this.opponent.generateWelcomeMessage());
 
