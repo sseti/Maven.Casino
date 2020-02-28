@@ -53,4 +53,7 @@ public class GoFishTest {
         Assert.assertThat(expected, hasItems());
     }
 
+    @Test
+    public void runGame() {
+    }
 }
