@@ -10,6 +10,7 @@ public class StatsConsole extends AbstractConsole {
         consoleCommands.put("help", Command.HELP);
         consoleCommands.put("1", Command.LEADERBOARD);
         consoleCommands.put("2", Command.INDIVIDUAL_STATS);
+        consoleCommands.put("0", Command.MAIN_MENU);
     }
 
     @Override
@@ -24,14 +25,17 @@ public class StatsConsole extends AbstractConsole {
             case HELP:
                 printHelpCommand(this);
                 if (App.isLoggedIn()) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    printPrompt(PromptMessage.STATS_MENU, true);
                 } else {
                     printPrompt(PromptMessage.LOGIN, true);
                 }
                 return;
-            default:
+            case MAIN_MENU:
                 MainConsole console = new MainConsole();
                 console.printPrompt(PromptMessage.STANDARD, true);
+                return;
+            default:
+                printPrompt(PromptMessage.STATS_MENU, true);
                 return;
         }
     }

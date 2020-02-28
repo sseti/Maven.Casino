@@ -92,7 +92,7 @@ public class BlackJack extends Game implements CardGame {
                 ConsoleServices.print("The dealers' hand value is: "+ this.opponent.getHandValue());
                 String input = ConsoleServices.getStringInput("Would you like to Hit or Stay? ");
                 String hitOrStay = "";
-                hitOrStay = (input.toLowerCase());
+                hitOrStay = input.toLowerCase();
                 if (hitOrStay.equals("hit")) {
                     this.currentPlayer.getHand().addAll(this.gameDeck.draw(1));
                     ConsoleServices.print("Your hand value is: "+ this.currentPlayer.getValue());
@@ -113,31 +113,30 @@ public class BlackJack extends Game implements CardGame {
                         }
                     }
                 }
-                if (hitOrStay.equals("Stay")){
-                    ConsoleServices.print(("It's the dealers turn now.")); this.playerTurn = false;}
-
-
+                if (hitOrStay.equals("stay")){
+                    ConsoleServices.print("It's the dealers turn now."); this.playerTurn = false;
+                }
             }
-
-                if(this.playerTurn = false){
-            {
+            else {
                 if (this.opponent.isHitting()){
                     this.opponent.getHand().addAll(this.gameDeck.draw(1));
                     ConsoleServices.print("Dealers' hand value is: "+ this.opponent.getHandValue());
                 }
                 this.findWinner = true;
-            }}
+            }
 
 
             if (this.findWinner) {
-                ConsoleServices.print("Lets see who won!\n Your hand: "+ this.currentPlayer.getValue()+"\n Dealers hand: "+ this.opponent.getHandValue());
+                ConsoleServices.print("Let's see who won!\nYour hand: "+ this.currentPlayer.getValue()+"\nDealers hand: "+ this.opponent.getHandValue());
                 if(this.currentPlayer.getValue() < 22 && this.currentPlayer.getValue() > this.opponent.getHandValue() || this.opponent.getHandValue() > 21) {
                     playerWon = true;
-                    System.out.println("You've won! "+ bets.get(0).getDollarVal()+ "$");
+                    ConsoleServices.print("You've won! "+ bets.get(0).getDollarVal()+ "$");
 
                 }
-               else playerWon = false;
-                ConsoleServices.print("Sorry you lost!");
+               else {
+                   playerWon = false;
+                    ConsoleServices.print("Sorry you lost!");
+                }
             }
             gameOver = true;
         }

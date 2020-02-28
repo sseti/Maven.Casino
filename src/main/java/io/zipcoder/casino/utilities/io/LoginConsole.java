@@ -33,7 +33,8 @@ public class LoginConsole extends AbstractConsole {
                 return;
             case REGISTER:
                 if (attemptRegister(args)) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    MainConsole console = new MainConsole();
+                    console.printPrompt(PromptMessage.STANDARD, true);
                 } else {
                     printPrompt(PromptMessage.LOGIN, true);
                 }
@@ -46,7 +47,8 @@ public class LoginConsole extends AbstractConsole {
                 return;
             case LOGIN:
                 if (attemptLogin(args)) {
-                    printPrompt(PromptMessage.STANDARD, true);
+                    MainConsole console = new MainConsole();
+                    console.printPrompt(PromptMessage.STANDARD, true);
                 } else {
                     printPrompt(PromptMessage.BAD_LOGIN, true);
                 }

@@ -17,20 +17,19 @@ public abstract class AbstractConsole {
         STATS,
         HELP,
         LOGOUT,
-        CASHOUT,
-        CONVERT,
-        MONEY_STATS,
         LEADERBOARD,
         INDIVIDUAL_STATS,
         BLACKJACK,
         GOFISH,
         LOOPY_DICE,
         CRAPS,
-        BAD_COMMAND,
         REGISTER,
         LOGIN,
         MAIN_MENU,
-        BACK_MENU
+        DEPOSIT,
+        BUY_CHIPS,
+        CASHOUT,
+        VIEW_CHIPS
     }
 
     public enum PromptMessage {
@@ -64,7 +63,6 @@ public abstract class AbstractConsole {
             ConsoleServices.print(MenuStrings.gamesMenuCommands);
         } else if (consoleType instanceof StatsConsole) {
             ConsoleServices.print(MenuStrings.statsMenuCommands);
-
         }
     }
 

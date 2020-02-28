@@ -8,11 +8,10 @@ import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.players.CardPlayer;
 import io.zipcoder.casino.players.GoFishNPC;
 import io.zipcoder.casino.players.GoFishPlayer;
-import io.zipcoder.casino.utilities.io.AbstractConsole;
 import io.zipcoder.casino.utilities.io.ConsoleServices;
-import io.zipcoder.casino.utilities.io.MainConsole;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +23,10 @@ public class GoFish extends Game implements CardGame {
     private GoFishNPC opponent;
     private Deck gameDeck;
     private boolean playerTurn;
-    private int playerPairs;
-    private int opponentPairs;
+    private int playerScore;
+    private int opponentScore;
     private int gameDrawAmt;
+    private int scoreToWin;
 
     public GoFish() {
         this(0, true, 1);
@@ -47,24 +47,59 @@ public class GoFish extends Game implements CardGame {
     public GoFish(int handicap, boolean playerGoesFirst, int drawAmt) {
         this.gameDeck = new Deck();
         this.playerTurn = playerGoesFirst;
-        this.playerPairs = handicap;
-        this.opponentPairs = 0;
+        this.playerScore = handicap;
+        this.opponentScore = 0;
         this.gameDrawAmt = drawAmt;
+        this.scoreToWin = 4;
     }
 
+    public void updateScoreAndHands() {
+        Map<Integer, Integer> playerOcc = new HashMap<>();
+        Map<Integer, Integer> oppOcc = new HashMap<>();
+        ArrayList<PlayingCard> toRemovePlay = new ArrayList<>();
+        ArrayList<PlayingCard> toRemoveOpp = new ArrayList<>();
+        for (PlayingCard card : this.currentPlayer.getHand()) {
+            if (playerOcc.containsKey(card.getValueAsInt())) {
+                playerOcc.put(card.getValueAsInt(), playerOcc.get(card.getValueAsInt()) + 1);
+            } else {
+                playerOcc.put(card.getValueAsInt(), 1);
+            }
+        }
+
+        for (PlayingCard card : this.opponent.getHand()) {
+            if (oppOcc.containsKey(card.getValueAsInt())) {
+                oppOcc.put(card.getValueAsInt(), oppOcc.get(card.getValueAsInt()) + 1);
+            } else {
+                oppOcc.put(card.getValueAsInt(), 1);
+            }
+        }
+
+        for (PlayingCard card : this.currentPlayer.getHand()) {
+            if (playerOcc.containsKey(card.getValueAsInt()) && playerOcc.get(card.getValueAsInt()) > 1) {
+                toRemovePlay.add(card);
+            }
+        }
+
+        for (PlayingCard card : this.opponent.getHand()) {
+            if (oppOcc.containsKey(card.getValueAsInt()) && oppOcc.get(card.getValueAsInt()) > 1) {
+                toRemoveOpp.add(card);
+            }
+        }
+
+        for (PlayingCard remove : toRemovePlay) {
+            this.currentPlayer.getHand().remove(remove);
+            this.playerScore++;
+        }
+
+        for (PlayingCard remove : toRemoveOpp) {
+            this.opponent.getHand().remove(remove);
+            this.opponentScore++;
+        }
+
+    }
 
     public boolean pollCard(PlayingCard card, CardPlayer playerToPoll) {
         return (playerToPoll.getHand().size() > 0) ? playerToPoll.getHand().contains(card) : false;
-    }
-
-    public PlayingCard getCardFromPlayer(PlayingCard card, CardPlayer playerToPullFrom) {
-        for (PlayingCard p : playerToPullFrom.getHand()) {
-            if (p.equals(card)) {
-                playerToPullFrom.getHand().remove(p);
-                return card;
-            }
-        }
-        return null;
     }
 
     @Override
@@ -78,72 +113,90 @@ public class GoFish extends Game implements CardGame {
         boolean gameOver = false;
 
         for (int i = 0; i < 10; i++) {
-            if (i%2==0) {
-                this.currentPlayer.
-                        getHand().
-                        addAll(
-                                this.gameDeck.draw(1)); }
+            if (i%2==0) { this.currentPlayer.getHand().addAll(this.gameDeck.draw(1)); }
             else { this.opponent.getHand().addAll(this.gameDeck.draw(1)); }
         }
 
+        updateScoreAndHands();
         ConsoleServices.print("Go Fish!");
         ConsoleServices.print(this.opponent.generateWelcomeMessage());
 
         // Game loop
         while (!gameOver) {
-
             // Player turn
             if (this.playerTurn)
             {
-                ConsoleServices.print("Cards in hand: " + this.currentPlayer.printHand());
-                String input = ConsoleServices.getStringInput("Enter the Rank value of the card you wish to fish for: ");
-                Integer guessedNum = -1;
-                try {
-                    guessedNum = Integer.parseInt(input);
-                } catch (NumberFormatException ex) { ConsoleServices.print("Please enter a card to fish for by number!"); continue; }
+                if (this.currentPlayer.getHand().size() < 1 && gameDeck.getCards().size() > 0) {
+                    ConsoleServices.print("Your hand is empty! Drawing 5 new cards.");
+                    this.currentPlayer.getHand().addAll(this.gameDeck.draw(5));
+                } else if (this.currentPlayer.getHand().size() > 0) {
+                    ConsoleServices.print("\nCards in hand: " + this.currentPlayer.printHand());
+                    String input = ConsoleServices.getStringInput("Enter the Rank value of the card you wish to fish for: ");
+                    Integer guessedNum = -1;
+                    try {
+                        guessedNum = Integer.parseInt(input);
+                    } catch (NumberFormatException ex) { ConsoleServices.print("Please enter a card to fish for by number!"); continue; }
 
-                if (guessedNum > -1 && guessedNum < 14) {
-                    PlayingCard polledCard = new PlayingCard(guessedNum);
-                    boolean poll = pollCard(polledCard, this.opponent);
-                    if (poll) {
-                        ConsoleServices.print("Your opponent did have a " + polledCard.getValue() + "!");
-                        this.currentPlayer.getHand().add(getCardFromPlayer(polledCard, this.opponent));
-                    }
-                    else { ConsoleServices.print("Go Fish!"); this.currentPlayer.goFish(this.gameDeck); }
-                    this.playerTurn = false;
-                } else { ConsoleServices.print("Please enter a card to fish for by number!"); }
+                    if (guessedNum > -1 && guessedNum < 14) {
+                        PlayingCard polledCard = new PlayingCard(guessedNum);
+                        boolean poll = pollCard(polledCard, this.opponent);
+                        if (poll) {
+                            ConsoleServices.print("\n                                 SUCCESS! " + this.opponent.getName() + " did have a " + polledCard.getValue() + "!");
+                            this.opponent.getHand().remove(polledCard);
+                            this.currentPlayer.getHand().add(polledCard);
+                        }
+                        else {
+                            ConsoleServices.print("\n                                 Go Fish!");
+                            this.currentPlayer.goFish(this.gameDeck);
+                        }
+                        this.playerTurn = false;
+                    } else { ConsoleServices.print("Please enter a card to fish for by number!"); }
+                }
             }
 
             // Opponent turn
             else
             {
-                PlayingCard askCard = this.opponent.generateCardToAsk();
-                ConsoleServices.print(this.opponent.getName() + ": Fishing for " + askCard.getValue());
-                boolean poll = pollCard(askCard, this.currentPlayer);
-                if (poll) {
-                    ConsoleServices.print("You had that card! Your opponent has now taken it from you.");
-                    this.opponent.getHand().add(getCardFromPlayer(askCard, this.opponent));
+                if (this.opponent.getHand().size() < 1 && gameDeck.getCards().size() > 0) {
+                    ConsoleServices.print("Your hand is empty! Drawing 5 new cards.");
+                    this.opponent.getHand().addAll(this.gameDeck.draw(5));
+                } else if (this.opponent.getHand().size() > 0) {
+                    PlayingCard askCard = this.opponent.generateCardToAsk();
+                    ConsoleServices.print("\n" + this.opponent.getName() + ": Fishing for " + askCard.getValue());
+                    boolean poll = pollCard(askCard, this.currentPlayer);
+                    if (poll) {
+                        ConsoleServices.print("                                 FISHED! You had a " + askCard.getValueAsInt() + "! Your opponent has now taken it from you.");
+                        this.currentPlayer.getHand().remove(askCard);
+                        this.opponent.getHand().add(askCard);
+                    } else {
+                        ConsoleServices.print("\n                                 Go Fish!");
+                        this.opponent.goFish(this.gameDeck);
+                    }
+                    this.playerTurn = true;
                 }
-                else { ConsoleServices.print("Go Fish!"); this.opponent.goFish(this.gameDeck); }
-                this.playerTurn = true;
             }
 
-            // PLACEHOLDER TO MAKE PLAYABLE - REMOVE
-            if (this.currentPlayer.getHand().size() > 10 || this.opponent.getHand().size() > 10) {
-                playerWon = this.currentPlayer.getHand().size() > this.opponent.getHand().size();
+            updateScoreAndHands();
+            ConsoleServices.print("\nScoring...");
+            ConsoleServices.print("Player Score: " + this.playerScore);
+            ConsoleServices.print("Opponent Score: " + this.opponentScore);
+            ConsoleServices.print("Opponent Hand Size: " + this.opponent.getHand().size());
+            ConsoleServices.print("Draw Deck Size: " + this.gameDeck.getCards().size());
+
+            if (playerScore > this.scoreToWin || opponentScore > this.scoreToWin || gameDeck.getCards().size() < 1) {
+                if (playerScore > this.scoreToWin || opponentScore > this.scoreToWin) {
+                    ConsoleServices.print("Game over! At least one player reached " + this.scoreToWin + "+ points!");
+                } else {
+                    ConsoleServices.print("Game over! Draw deck has run out of cards!");
+                }
                 gameOver = true;
+                playerWon = playerScore > opponentScore;
+                if (playerWon) { ConsoleServices.print("You won!"); } else { ConsoleServices.print("You lost!"); }
+                StatTracker.finishGame(this, playerWon);
             }
-            // END PLACEHOLDER
 
-            // tally up pairs for both players, see if somebody won, if not just let gameloop continue
-            // if there is a winner, set gameOver = true, set playerWon to the correct value
         }
-
-
-        if (playerWon) { ConsoleServices.print("You won!"); } else { ConsoleServices.print("You lost!"); }
-        StatTracker.finishGame(this, playerWon);
     }
-
 }
 
 // game logic

@@ -10,6 +10,7 @@ import io.zipcoder.casino.utilities.persistence.Database;
 import io.zipcoder.casino.utilities.persistence.StatTracker;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MenuStrings {
 
@@ -135,12 +136,15 @@ public class MenuStrings {
                 "*************************************************************************\n" +
                 "***                          Enter a command                          ***\n" +
                 "*************************************************************************\n" ;
-
+        String dollarText =  "*** $$: " + dollars;
+        int lengthTo = "**********************************************************************".length();
+        while (dollarText.length() < lengthTo) { dollarText += " "; }
+        dollarText += "***\n";
         currencyMenu = "" +
                 "*************************************************************************\n" +
                 "***                     ZipCasino - Currency Menu                     ***\n" +
                 "*************************************************************************\n" +
-                "***    $$: + " + dollars + "                                                              ***\n" +
+                dollarText +
                 "*************************************************************************\n" +
                 "***    1 |  Buy Chips                                                 ***\n" +
                 "***    2 |  Cashout                                                   ***\n" +
@@ -151,11 +155,15 @@ public class MenuStrings {
                 "***                          Enter a command                          ***\n" +
                 "*************************************************************************\n" ;
 
+        dollarText =  "*** $$: " + dollars;
+        lengthTo = "*****************************************************************************************************************************".length();
+        while (dollarText.length() < lengthTo) { dollarText += " "; }
+        dollarText += "***\n";
         buyChipsMenu = "" +
                 "********************************************************************************************************************************\n" +
                 "***                                                   ZipCasino - Buy Chips                                                  ***\n" +
                 "********************************************************************************************************************************\n" +
-                "***                         $$: + " + dollars + "                                                                                          ***\n" +
+                dollarText +
                 "********************************************************************************************************************************\n" +
                 "***                  1 |  Buy Black                                                                                          ***\n" +
                 "***                  2 |  Buy Green                                                                                          ***\n" +
@@ -187,7 +195,7 @@ public class MenuStrings {
                 "*************************************************************************\n" +
                 "***                      ZipCasino - Stats Menu                       ***\n" +
                 "*************************************************************************\n" +
-                "***    1 |  Leaderboards                                              ***\n" +
+                "***    1 |  Leaderboard                                               ***\n" +
                 "***    2 |  Individual stats                                          ***\n" +
                 "***    0 |  Return to the main menu                                   ***\n" +
                 "*************************************************************************\n" +
@@ -200,8 +208,8 @@ public class MenuStrings {
                 "*************************************************************************\n" +
                 leaderboardPlayers +
                 "***-------------------------------------------------------------------***\n" +
-                "***    0 |  Return to the stats menu                                   ***\n" +
-                "***    1 |  Return to the main menu                                   ***\n" +
+                "***    0 |  Return to the main  menu                                   ***\n" +
+                "***    2 |  Individual stats                                          ***\n" +
                 "*************************************************************************\n" +
                 "***                          Enter a command                          ***\n" +
                 "*************************************************************************\n" ;
@@ -220,8 +228,8 @@ public class MenuStrings {
                 "***    "+ playerStats.getTotalLifetimeChipWinnings() +" |  Total Lifetime Chip Winnings                              ***\n" +
                 "***    "+ playerStats.getTotalCashSpent() +" |  Total Cash Spent                                          ***\n" +
                 "***-------------------------------------------------------------------***\n" +
-                "***    0 |  Return to stats menu                                      ***\n" +
-                "***    1 |  Return to main menu                                       ***\n" +
+                "***    0 |  Return to main  menu                                      ***\n" +
+                "***    1 |  Leaderboard                                               ***\n" +
                 "*************************************************************************\n" +
                 "***                          Enter a command                          ***\n" +
                 "*************************************************************************\n" ;
@@ -231,8 +239,76 @@ public class MenuStrings {
 
         goodbye = "" +
                 "**************************************************\n" +
-                "***                  Goodbye!                  ***\n" +
+                "***             Always Be Loopin'              ***\n" +
                 "**************************************************\n";
+
+        loginMenuCommands = "" +
+                "*******************************************************************\n" +
+                "**                     Login Menu Commands                       **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Login      | login [USER] [PASS]                              **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Register   | register [USER] [PASS]                           **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Help       | Prints all commands in any menu                  **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Logout     | Save, Logout and Quit ZipCasino App              **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "*******************************************************************\n";
+
+        currencyMenuCommands = "" +
+                "*******************************************************************\n" +
+                "**                   Currency Menu Commands                      **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Buy Chips   | Trade cash for chips                            **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Cashout     | Empty account of all cash                       **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Deposit     | Add cash to account                             **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** View Chips  | View all currently held chips                   **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "*******************************************************************\n";
+
+        gamesMenuCommands = "" +
+                "*******************************************************************\n" +
+                "**                     Games Menu Commands                       **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** BlackJack   | Play BlackJack                                  **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Go Fish     | Play Go Fish                                    **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Loopy Dice  | Play Loopy Dice                                 **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Craps       | Play Craps                                      **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "*******************************************************************\n";
+
+        statsMenuCommands = "" +
+                "*******************************************************************\n" +
+                "**                     Stats Menu Commands                       **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Leaderboard        | View rankings of all players in database **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Individual Stats   | View your own personal stats             **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "*******************************************************************\n";
+
+        mainMenuCommands = "" +
+                "*******************************************************************************************\n" +
+                "**                                  Main Menu Commands                                   **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Games     | Enter the games menu and play BlackJack, GoFish, Loopy Dice or Craps      **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Currency  | Enter the currency menu and modify your current wallet                    **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Money     | Enter the currency menu and modify your current wallet                    **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Stats     | Enter the stats menu and view leaderboards and personal stats             **\n" +
+                "** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "** Main      | Enter at any point outside of gameplay to return to main menu             **\n" +
+                "**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**\n" +
+                "*******************************************************************************************\n";
 
     }
 
@@ -266,22 +342,65 @@ public class MenuStrings {
         }
     }
 
-    public static String randomIdentifier() {
-        StringBuilder builder = new StringBuilder();
-        Random rand = new Random();
-        String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Set<String> identifiers = new HashSet<String>();
-        while(builder.toString().length() == 0) {
-            int length = rand.nextInt(5)+5;
-            for(int i = 0; i < length; i++) {
-                builder.append(lexicon.charAt(rand.nextInt(lexicon.length())));
-            }
-            if(identifiers.contains(builder.toString())) {
-                builder = new StringBuilder();
-            }
-        }
-        return builder.toString();
+    public static String getRandomOpponentName() {
+        ArrayList<String> names = new ArrayList<String>();
+        names.add("Scuba Steve");
+        names.add("Gandalf");
+        names.add("Sauron");
+        names.add("Darth Vader");
+        names.add("Dealer");
+        names.add("John");
+        names.add("Pete");
+        names.add("Joe");
+        names.add("Jack");
+        names.add("Mary");
+        names.add("Jill");
+        names.add("Ashley");
+        names.add("Steve-O");
+        names.add("Joe Rogan");
+        names.add("Kris Younger");
+        names.add("Chris Nobles");
+        names.add("Roberto");
+        names.add("Adam");
+        names.add("Raheel");
+        names.add("Mo");
+        names.add("Sandy");
+        names.add("Dave");
+        names.add("Zeth");
+        names.add("Fat Guy");
+        names.add("Noob");
+        names.add("RoboCop");
+        names.add("Mr. Nice Guy");
+        names.add("Your Girlfriend");
+        names.add("Hobo Jim");
+        names.add("Hobo Jeff");
+        names.add("Dan Stabb");
+        names.add("Desa");
+        names.add("Opponent");
+        names.add("Bus Stop Guy");
+        names.add("Russian Spy");
+        names.add("Donald Trump");
+        names.add("John Oliver");
+        names.add("Hot Girl");
+        names.add("Timmy Turner");
+        names.add("Spongebob");
+        names.add("Patrick Star");
+        names.add("Ash Ketchum");
+        names.add("My Dad");
+        names.add("A Monkey");
+        names.add("A Platypus");
+        names.add("Farmer Joe");
+        names.add("Farmer Rick");
+        names.add("Ashy Larry");
+        names.add("Rick James");
+        names.add("Ric Flair");
+        names.add("Quavo");
+        names.add("Post Malone");
+        names.add("Danny Carey");
+        names.add("Neil Peart");
+        names.add("Jedi");
+        names.add("Spock");
+        return names.get(ThreadLocalRandom.current().nextInt(names.size()));
     }
-
 
 }

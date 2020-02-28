@@ -13,7 +13,7 @@ public class Dealer extends CardPlayer {
     private String name;
 
     public Dealer() {
-        this(MenuStrings.randomIdentifier());
+        this(MenuStrings.getRandomOpponentName());
     }
 
     public Dealer(String name) {

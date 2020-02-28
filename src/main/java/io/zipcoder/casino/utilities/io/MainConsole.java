@@ -15,6 +15,7 @@ public class MainConsole extends AbstractConsole {
         consoleCommands.put("stats", Command.STATS);
         consoleCommands.put("help", Command.HELP);
         consoleCommands.put("logout", Command.LOGOUT);
+        consoleCommands.put("main", Command.MAIN_MENU);
     }
 
     @Override
@@ -45,6 +46,13 @@ public class MainConsole extends AbstractConsole {
                 printPrompt(PromptMessage.GOODBYE, false);
                 if (App.isLoggedIn()) {
                     SaveLoadServices.saveJSON(SaveLoadServices.SAVE_FILE_NAME);
+                }
+                return;
+            case MAIN_MENU:
+                if (App.isLoggedIn()) {
+                    printPrompt(PromptMessage.STANDARD, true);
+                } else {
+                    printPrompt(PromptMessage.LOGIN, true);
                 }
                 return;
             default:
