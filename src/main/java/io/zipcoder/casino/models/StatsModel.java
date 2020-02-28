@@ -15,9 +15,10 @@ public class StatsModel implements Comparable<StatsModel> {
     private int gamblingWins = 0;
     private int totalLifetimeChipWinnings = 0;
     private int totalCashSpent = 0;
+    private int overallScore = 0;
 
     public StatsModel() {
-        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     @JsonCreator
@@ -31,7 +32,8 @@ public class StatsModel implements Comparable<StatsModel> {
             @JsonProperty("overallLosses")int overallLosses,
             @JsonProperty("gamblingWins")int gamblingWins,
             @JsonProperty("totalLifetimeChipWinnings")int totalLifetimeChipWinnings,
-            @JsonProperty("totalCashSpent")int totalCashSpent) {
+            @JsonProperty("totalCashSpent")int totalCashSpent,
+            @JsonProperty("overallScore")int overallScore) {
         this.blackJackWins = blackJackWins;
         this.goFishWins = goFishWins;
         this.loopyWins = loopyWins;
@@ -42,6 +44,7 @@ public class StatsModel implements Comparable<StatsModel> {
         this.gamblingWins = gamblingWins;
         this.totalLifetimeChipWinnings = totalLifetimeChipWinnings;
         this.totalCashSpent = totalCashSpent;
+        this.overallScore = overallScore;
     }
 
     public int getBlackJackWins() {
@@ -122,6 +125,10 @@ public class StatsModel implements Comparable<StatsModel> {
 
     public void setTotalCashSpent(int totalCashSpent) {
         this.totalCashSpent = totalCashSpent;
+    }
+
+    public void setOverallScore(int overallScore) {
+        this.overallScore = overallScore;
     }
 
     public int getOverallScore() {

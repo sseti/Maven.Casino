@@ -1,5 +1,6 @@
 package io.zipcoder.casino.players;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.models.Wallet;
 
@@ -8,6 +9,7 @@ import java.util.Collections;
 
 public class CardPlayer extends Player {
 
+    @JsonIgnore
     private ArrayList<PlayingCard> hand;
 
     // For tests
@@ -26,6 +28,7 @@ public class CardPlayer extends Player {
         this.hand = new ArrayList<>();
     }
 
+    @JsonIgnore
     public ArrayList<PlayingCard> getHand() {
         return hand;
     }
@@ -38,6 +41,7 @@ public class CardPlayer extends Player {
         this.hand.remove(card);
     }
 
+    @JsonIgnore
     public String printHand() {
         String toRet = "";
         Collections.sort(this.getHand());

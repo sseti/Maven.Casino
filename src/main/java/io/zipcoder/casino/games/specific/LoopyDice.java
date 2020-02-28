@@ -5,6 +5,7 @@ import io.zipcoder.casino.games.DiceGame;
 import io.zipcoder.casino.games.Game;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.players.LoopyDicePlayer;
+import io.zipcoder.casino.utilities.MenuStrings;
 import io.zipcoder.casino.utilities.io.AbstractConsole;
 import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.io.MainConsole;
@@ -31,6 +32,7 @@ public class LoopyDice implements Game, DiceGame {
 
     @Override
     public void runGame() {
+        ConsoleServices.print(MenuStrings.asciiDice);
         ConsoleServices.print("Let's get Loopy!");
         App.updatePlayer(this);
         this.player = (LoopyDicePlayer) App.getCurrentPlayer();

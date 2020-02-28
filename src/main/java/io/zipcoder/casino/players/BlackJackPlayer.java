@@ -1,5 +1,6 @@
 package io.zipcoder.casino.players;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.zipcoder.casino.games.specific.BlackJack;
 import io.zipcoder.casino.models.Chip;
 import io.zipcoder.casino.models.Deck;
@@ -38,6 +39,8 @@ public class BlackJackPlayer extends CardPlayer {
     public boolean split() {
         return false;
     }
+
+    @JsonIgnore
     public int getValue() {
         int value = 0;
         int handTotal = 0;

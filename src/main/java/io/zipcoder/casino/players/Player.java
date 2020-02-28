@@ -22,19 +22,19 @@ public class Player implements Comparable<Player> {
     }
 
     public Player(String name, String password, Wallet wallet) {
-        this(name, password, wallet, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this(name, password, wallet, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    }
+
+    public Player(String name, String password, Wallet wallet, StatsModel stat) {
+        this(name, password, wallet, stat.getBlackJackWins(), stat.getGoFishWins(), stat.getLoopyWins(), stat.getCrapsWins(), stat.getHighestChipValue(), stat.getOverallWins(), stat.getOverallLosses(), stat.getGamblingWins(), stat.getTotalLifetimeChipWinnings(), stat.getTotalCashSpent(), stat.getOverallScore());
     }
 
     @JsonCreator
-    public Player(@JsonProperty("name")String name, @JsonProperty("password")String password, @JsonProperty("wallet")Wallet wallet, @JsonProperty("stats")StatsModel stat) {
-        this(name, password, wallet, stat.getBlackJackWins(), stat.getGoFishWins(), stat.getLoopyWins(), stat.getCrapsWins(), stat.getHighestChipValue(), stat.getOverallWins(), stat.getOverallLosses(), stat.getGamblingWins(), stat.getTotalLifetimeChipWinnings(), stat.getTotalCashSpent());
-    }
-
-    public Player(String name, String password, Wallet wallet, int blackJackWins, int goFishWins, int loopyWins, int crapsWins, int highestChipValue, int overallWins, int overallLosses, int gamblingWins, int totalLifetimeChipWinnings, int totalCashSpent) {
+    public Player(@JsonProperty("name")String name, @JsonProperty("password")String password, @JsonProperty("wallet")Wallet wallet, @JsonProperty("blackJackWins") int blackJackWins, @JsonProperty("goFishWins") int goFishWins, @JsonProperty("loopyWins") int loopyWins, @JsonProperty("crapsWins") int crapsWins, @JsonProperty("highestChipValue") int highestChipValue, @JsonProperty("overallWins") int overallWins, @JsonProperty("overallLosses") int overallLosses, @JsonProperty("gamblingWins") int gamblingWins, @JsonProperty("totalLifetimeChipWinnings") int totalLifetimeChipWinnings, @JsonProperty("totalCashSpent") int totalCashSpent, @JsonProperty("overallScore") int overallScore) {
         this.name = name;
         this.password = password;
         this.wallet = wallet;
-        this.stats = new StatsModel(blackJackWins, goFishWins, loopyWins, crapsWins, highestChipValue,overallWins, overallLosses, gamblingWins, totalLifetimeChipWinnings, totalCashSpent);
+        this.stats = new StatsModel(blackJackWins, goFishWins, loopyWins, crapsWins, highestChipValue,overallWins, overallLosses, gamblingWins, totalLifetimeChipWinnings, totalCashSpent, overallScore);
     }
 
     public String getName() {

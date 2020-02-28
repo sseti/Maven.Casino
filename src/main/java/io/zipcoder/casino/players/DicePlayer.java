@@ -1,5 +1,6 @@
 package io.zipcoder.casino.players;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.zipcoder.casino.models.Dice;
 import io.zipcoder.casino.models.Wallet;
 
@@ -31,6 +32,7 @@ public class DicePlayer extends Player {
         return sum;
     }
 
+    @JsonIgnore
     public Integer getNumDice() {
         return this.dice.size();
     }
