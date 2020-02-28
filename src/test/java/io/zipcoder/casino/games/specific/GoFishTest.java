@@ -5,6 +5,7 @@ import io.zipcoder.casino.players.GoFishPlayer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -37,9 +38,12 @@ public class GoFishTest {
         GoFishPlayer plrToPullFrom = new GoFishPlayer("Big Ragu");
         GoFish game = new GoFish();
         PlayingCard six = new PlayingCard(6, PlayingCard.Suit.DIAMONDS);
+        plrToPullFrom.addCardToHand(six);
         PlayingCard actual = six;
         List<PlayingCard> expected = plrToPullFrom.getHand();
-        Assert.assertThat(expected, hasItems());
+        List<PlayingCard> sixCard = new ArrayList<PlayingCard>();
+        sixCard.add(six);
+        Assert.assertEquals(expected, sixCard);
     }
 
 
