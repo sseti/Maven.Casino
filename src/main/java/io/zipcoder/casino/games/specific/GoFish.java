@@ -142,8 +142,6 @@ public class GoFish extends Game implements CardGame {
 
         if (playerWon) { ConsoleServices.print("You won!"); } else { ConsoleServices.print("You lost!"); }
         StatTracker.finishGame(this, playerWon);
-        MainConsole console = new MainConsole();
-        console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
     }
 
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.zipcoder.casino.models.StatsModel;
 import io.zipcoder.casino.models.Wallet;
 
-public class Player {
+public class Player implements Comparable<Player> {
 
     private String name;
     private String password;
@@ -53,5 +53,10 @@ public class Player {
 
     public void setStats(StatsModel stats) {
         this.stats = stats;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return (this.stats.compareTo(o.getStats()));
     }
 }

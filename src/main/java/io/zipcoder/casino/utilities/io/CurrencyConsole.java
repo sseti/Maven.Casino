@@ -9,10 +9,6 @@ public class CurrencyConsole extends AbstractConsole {
         consoleCommands.put("Help", Command.HELP);
     }
 
-    @Override
-    public void runOnInvalidCommand(ArrayList<String> originalArgs) {
-
-    }
 
     @Override
     public void processCommand(Command cmd, ArrayList<String> args) {

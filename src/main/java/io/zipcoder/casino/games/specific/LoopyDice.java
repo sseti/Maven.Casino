@@ -64,15 +64,11 @@ public class LoopyDice extends Game implements DiceGame {
             playerWon = true;
             ConsoleServices.print("You won!");
             StatTracker.finishGame(this, playerWon);
-            MainConsole console = new MainConsole();
-            console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
             return true;
         } else if (gameOver()) {
             playerWon = false;
             ConsoleServices.print("You lost!");
             StatTracker.finishGame(this, playerWon);
-            MainConsole console = new MainConsole();
-            console.printPrompt(AbstractConsole.PromptMessage.STANDARD, true);
             return true;
         }
         return false;

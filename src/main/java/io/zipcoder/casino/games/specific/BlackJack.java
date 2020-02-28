@@ -1,6 +1,5 @@
 package io.zipcoder.casino.games.specific;
 
-import com.sun.xml.internal.xsom.impl.SchemaImpl;
 import io.zipcoder.casino.App;
 import io.zipcoder.casino.games.CardGame;
 import io.zipcoder.casino.games.Game;
@@ -9,7 +8,6 @@ import io.zipcoder.casino.models.Deck;
 import io.zipcoder.casino.models.PlayingCard;
 import io.zipcoder.casino.models.Wallet;
 import io.zipcoder.casino.players.BlackJackPlayer;
-import io.zipcoder.casino.players.CardPlayer;
 import io.zipcoder.casino.players.Dealer;
 import io.zipcoder.casino.utilities.io.ConsoleServices;
 import io.zipcoder.casino.utilities.persistence.StatTracker;

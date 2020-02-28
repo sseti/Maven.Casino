@@ -1,5 +1,6 @@
 package io.zipcoder.casino.utilities.io;
 
+import io.zipcoder.casino.App;
 import io.zipcoder.casino.utilities.MenuStrings;
 
 import java.util.ArrayList;
@@ -27,7 +28,9 @@ public abstract class AbstractConsole {
         CRAPS,
         BAD_COMMAND,
         REGISTER,
-        LOGIN
+        LOGIN,
+        MAIN_MENU,
+        BACK_MENU
     }
 
     public enum PromptMessage {
@@ -36,8 +39,12 @@ public abstract class AbstractConsole {
         CURRENCY_MENU,
         STATS_MENU,
         LOGIN,
-        WELCOME,
-        BAD_LOGIN
+        BAD_LOGIN,
+        BUY_CHIPS_MENU,
+        VIEW_CHIPS_MENU,
+        LEADERBOARD,
+        IND_STATS,
+        GOODBYE
     }
 
     public AbstractConsole() {
@@ -116,7 +123,7 @@ public abstract class AbstractConsole {
             printPrompt(PromptMessage.STANDARD, true);
         }
         else {
-            runOnInvalidCommand(args);
+            runOnInvalidCommand(this);
         }
     }
 
@@ -135,11 +142,15 @@ public abstract class AbstractConsole {
         GamesConsole gamesConsole = new GamesConsole();
         LoginConsole loginConsole = new LoginConsole();
         StatsConsole statsConsole = new StatsConsole();
-        if (console.commandExists(cmd)) { return true; }
-        else if (currencyConsole.commandExists(cmd)) { return true; }
-        else if (gamesConsole.commandExists(cmd)) { return true; }
-        else if (loginConsole.commandExists(cmd)) { return true; }
-        else if (statsConsole.commandExists(cmd)) { return true; }
+        try {
+            Integer val = Integer.parseInt(cmd);
+        } catch (NumberFormatException ex) {
+            if (console.commandExists(cmd)) { return true; }
+            else if (currencyConsole.commandExists(cmd)) { return true; }
+            else if (gamesConsole.commandExists(cmd)) { return true; }
+            else if (loginConsole.commandExists(cmd)) { return true; }
+            else if (statsConsole.commandExists(cmd)) { return true; }
+        }
         return false;
     }
 
@@ -149,17 +160,44 @@ public abstract class AbstractConsole {
         GamesConsole gamesConsole = new GamesConsole();
         LoginConsole loginConsole = new LoginConsole();
         StatsConsole statsConsole = new StatsConsole();
-        if (console.commandExists(cmd)) { return console; }
-        else if (currencyConsole.commandExists(cmd)) { return currencyConsole; }
-        else if (gamesConsole.commandExists(cmd)) { return gamesConsole; }
-        else if (loginConsole.commandExists(cmd)) { return loginConsole; }
-        else if (statsConsole.commandExists(cmd)) { return statsConsole; }
+        try {
+            Integer val = Integer.parseInt(cmd);
+        } catch (NumberFormatException ex) {
+            if (console.commandExists(cmd)) { return console; }
+            else if (currencyConsole.commandExists(cmd)) { return currencyConsole; }
+            else if (gamesConsole.commandExists(cmd)) { return gamesConsole; }
+            else if (loginConsole.commandExists(cmd)) { return loginConsole; }
+            else if (statsConsole.commandExists(cmd)) { return statsConsole; }
+        }
         return null;
     }
 
     protected abstract void initializeCommands();
 
-    public abstract void runOnInvalidCommand(ArrayList<String> originalArgs);
+    private void runOnInvalidCommand(AbstractConsole currentConsole) {
+        ConsoleServices.print("Bad command! Please enter a valid command, or enter 'Help'.");
+        if (App.isLoggedIn()) {
+            if (currentConsole instanceof MainConsole) {
+                MainConsole console = (MainConsole) this;
+                console.printPrompt(PromptMessage.STANDARD, true);
+            } else if (currentConsole instanceof GamesConsole) {
+                GamesConsole games = (GamesConsole) this;
+                games.printPrompt(PromptMessage.GAMES_MENU, true);
+            } else if (currentConsole instanceof StatsConsole) {
+                StatsConsole stat = (StatsConsole) this;
+                stat.printPrompt(PromptMessage.STATS_MENU, true);
+            } else if (currentConsole instanceof CurrencyConsole) {
+                CurrencyConsole curr = (CurrencyConsole) this;
+                curr.printPrompt(PromptMessage.CURRENCY_MENU, true);
+            } else {
+                this.printPrompt(PromptMessage.STANDARD, true);
+            }
+        } else {
+            printPrompt(PromptMessage.LOGIN, true);
+        }
+        return;
+    }
+
 
     public abstract void processCommand(Command cmd, ArrayList<String> args);
 

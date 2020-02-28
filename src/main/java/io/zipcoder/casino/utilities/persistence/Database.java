@@ -35,8 +35,7 @@ public class Database {
         return toRet;
     }
 
-    public static Player processStats(Player currentPlayer) {
-        Player processedPlayer = currentPlayer;
+    public static void processStats(Player processedPlayer) {
         processedPlayer.getStats().setBlackJackWins(StatTracker.blackJackWins);
         processedPlayer. getStats().setLoopyWins(StatTracker.blackJackWins);
         processedPlayer. getStats().setCrapsWins(StatTracker.blackJackWins);
@@ -49,9 +48,8 @@ public class Database {
         int gamblingWins = StatTracker.crapsWins + StatTracker.blackJackWins;
         int nonGamblingWins = StatTracker.loopyWins + StatTracker.goFishWins;
         int totalWins = gamblingWins + nonGamblingWins;
-        processedPlayer. getStats().setOverallWins(totalWins);
-        processedPlayer. getStats().setGamblingWins(gamblingWins);
-        return processedPlayer;
+        processedPlayer.getStats().setOverallWins(totalWins);
+        processedPlayer.getStats().setGamblingWins(gamblingWins);
     }
 
     public static void reloadAllUsers(ArrayList<Player> players) {

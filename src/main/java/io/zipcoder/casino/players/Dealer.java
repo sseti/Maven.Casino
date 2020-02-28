@@ -32,7 +32,7 @@ public class Dealer extends CardPlayer {
         if(getHandValue() <= 16){
             return true;
         }
-        return false;
+            return false;
     }
 
     public int getHandValue() {
@@ -42,12 +42,12 @@ public class Dealer extends CardPlayer {
             if (this.getHand().get(i).getValueAsInt() > 10){
                 newCardValue = 10;
             }
-            else if (this.getHand().get(i).getValueAsInt() == 1){
-                newCardValue = 11;
+           else if (this.getHand().get(i).getValueAsInt() == 1){
+               newCardValue = 11;
             } else{
-                newCardValue  = this.getHand().get(i).getValueAsInt();
+               newCardValue  = this.getHand().get(i).getValueAsInt();
             }
-            sum += newCardValue;
+               sum += newCardValue;
         }
         return sum;
     }
